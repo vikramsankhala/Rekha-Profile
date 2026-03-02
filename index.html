@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rekha Sankhala | Environmental Leader & Community Changemaker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --deep: #1A1208;
+      --forest: #2D4A2D;
+      --sage: #7A9B6A;
+      --cream: #F7F2E8;
+      --warm-white: #FDFAF4;
+      --text: #2C2416;
+      --text-muted: #6B5C3E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(26,18,8,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 300; letter-spacing: 0.08em;
+      color: var(--gold-light); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: rgba(247,242,232,0.75); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--deep);
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(45,74,45,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+    }
+    /* Decorative leaf pattern */
+    .hero-bg::after {
+      content: '';
+      position: absolute; right: 0; top: 0; bottom: 0; width: 50%;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          transparent, transparent 60px,
+          rgba(122,155,106,0.04) 60px, rgba(122,155,106,0.04) 61px
+        );
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 4rem 4rem 8rem;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem; font-weight: 500;
+    }
+    .hero-tag::before {
+      content: ''; width: 28px; height: 1px; background: var(--gold);
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300; line-height: 1.05; color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .hero-name em { font-style: italic; color: var(--gold-light); }
+    .hero-roles {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      margin-bottom: 3rem;
+    }
+    .hero-roles span {
+      font-size: 0.82rem; letter-spacing: 0.1em; color: rgba(247,242,232,0.6);
+      text-transform: uppercase; font-weight: 300;
+    }
+    .hero-roles span::before { content: '— '; color: var(--sage); }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 0.9rem 2rem; border: 1px solid var(--gold);
+      color: var(--gold); text-decoration: none; font-size: 0.8rem;
+      letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+      transition: all 0.3s; width: fit-content;
+    }
+    .hero-cta:hover { background: var(--gold); color: var(--deep); }
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo-frame {
+      position: relative; width: 420px; height: 520px;
+    }
+    .hero-photo-frame::before {
+      content: ''; position: absolute;
+      top: 20px; left: 20px; right: -20px; bottom: -20px;
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+    .hero-photo-frame img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+      display: block;
+      filter: sepia(10%) contrast(105%);
+    }
+    .hero-photo-badge {
+      position: absolute; bottom: -15px; right: -30px;
+      background: var(--forest); border: 1px solid var(--sage);
+      padding: 1rem 1.5rem; text-align: center;
+    }
+    .hero-photo-badge strong {
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; color: var(--gold); font-weight: 400;
+    }
+    .hero-photo-badge span {
+      font-size: 0.65rem; letter-spacing: 0.1em; color: var(--sage);
+      text-transform: uppercase;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(247,242,232,0.35); font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; z-index: 2;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .hero-scroll::after {
+      content: '↓'; font-size: 1rem; color: var(--gold);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── VIDEO SECTION ── */
+    #video {
+      background: var(--deep);
+      padding: 6rem 0;
+      text-align: center;
+    }
+    #video .section-eyebrow { justify-content: center; color: var(--gold); }
+    #video .section-eyebrow::before { display: none; }
+    #video .section-title { color: var(--cream); }
+    #video .section-title em { color: var(--gold-light); }
+    #video .divider { margin: 1.5rem auto 2.5rem; }
+    .video-wrapper {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      position: relative;
+      border: 2px solid rgba(201,168,76,0.3);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .video-wrapper video {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+    .video-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(26,18,8,0.95);
+      border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    .video-controls button {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .video-controls button:hover {
+      background: var(--gold);
+      color: var(--deep);
+    }
+    .video-caption {
+      font-size: 0.85rem;
+      color: rgba(247,242,232,0.6);
+      margin-top: 1rem;
+      font-weight: 300;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 7rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 1rem;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 1rem;
+    }
+    .section-eyebrow::before {
+      content: ''; width: 40px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 400; line-height: 1.15; color: var(--deep);
+    }
+    .section-title em { font-style: italic; color: var(--forest); }
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--sage));
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    /* ── PROFILE ── */
+    #about { background: var(--warm-white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem;
+      align-items: center;
+    }
+    .about-left { position: relative; }
+    .about-ornament {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14rem; line-height: 1; font-weight: 300;
+      color: rgba(201,168,76,0.07); position: absolute;
+      top: -3rem; left: -2rem; pointer-events: none; user-select: none;
+      font-style: italic;
+    }
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic; font-weight: 300;
+      color: var(--forest); line-height: 1.6;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .cert-pills {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem;
+    }
+    .pill {
+      padding: 0.4rem 1rem; border: 1px solid rgba(45,74,45,0.3);
+      font-size: 0.72rem; letter-spacing: 0.08em; color: var(--forest);
+      background: rgba(122,155,106,0.08);
+    }
+    .about-text p {
+      font-size: 1rem; line-height: 1.85; color: var(--text-muted);
+      margin-bottom: 1.2rem; font-weight: 300;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+
+    /* ── ACHIEVEMENT ── */
+    #achievement { background: var(--deep); color: var(--cream); }
+    #achievement .section-title { color: var(--cream); }
+    #achievement .section-title em { color: var(--gold-light); }
+    .achievement-hero {
+      background: linear-gradient(135deg, rgba(45,74,45,0.5), rgba(26,18,8,0.8));
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 3rem; margin-bottom: 3rem; position: relative; overflow: hidden;
+    }
+    .achievement-hero::before {
+      content: 'CIRCULAR\AECONOMY';
+      white-space: pre;
+      position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem; font-weight: 300; line-height: 0.9;
+      color: rgba(201,168,76,0.06); pointer-events: none; text-align: right;
+    }
+    .achievement-hero h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400; color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    .achievement-hero p {
+      font-size: 0.95rem; line-height: 1.8; color: rgba(247,242,232,0.75);
+      max-width: 700px; font-weight: 300;
+    }
+    .process-chain {
+      display: flex; align-items: center; gap: 0; margin: 3rem 0; flex-wrap: wrap;
+    }
+    .process-step {
+      flex: 1; min-width: 140px;
+      background: rgba(45,74,45,0.2); border: 1px solid rgba(122,155,106,0.2);
+      padding: 1.5rem 1rem; text-align: center; position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: '→'; position: absolute; right: -0.8rem; top: 50%;
+      transform: translateY(-50%); color: var(--gold); z-index: 1;
+      font-size: 1.2rem; background: var(--deep); padding: 0 0.2rem;
+    }
+    .process-step .step-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .process-step .step-label {
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sage); font-weight: 500;
+    }
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.15);
+    }
+    .metric-card {
+      background: var(--deep); padding: 2.5rem 1.5rem; text-align: center;
+      transition: background 0.3s;
+    }
+    .metric-card:hover { background: rgba(45,74,45,0.4); }
+    .metric-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem; font-weight: 300; color: var(--gold);
+      line-height: 1; margin-bottom: 0.3rem;
+    }
+    .metric-unit {
+      font-size: 0.75rem; color: var(--gold-light); letter-spacing: 0.1em;
+    }
+    .metric-label {
+      font-size: 0.72rem; color: rgba(247,242,232,0.55); margin-top: 0.5rem;
+      letter-spacing: 0.05em; line-height: 1.4;
+    }
+
+    /* ── ADVOCACY ── */
+    #advocacy { background: var(--cream); }
+    .advocacy-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; }
+    .advocacy-visual {
+      position: relative; height: 400px;
+      background: linear-gradient(135deg, var(--forest) 0%, #1a3320 100%);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .mangrove-art {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem; color: rgba(122,155,106,0.2); font-weight: 300;
+      line-height: 1; text-align: center; font-style: italic; user-select: none;
+    }
+    .advocacy-badge {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(26,18,8,0.85);
+      padding: 1.2rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .advocacy-badge-icon { font-size: 2rem; }
+    .advocacy-badge-text strong {
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--gold-light); font-weight: 400;
+    }
+    .advocacy-badge-text span { font-size: 0.7rem; color: var(--sage); letter-spacing: 0.08em; }
+    .advocacy-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; color: var(--deep); margin-bottom: 1rem;
+    }
+    .advocacy-text p {
+      font-size: 0.95rem; line-height: 1.85; color: var(--text-muted);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+    .ngt-label {
+      display: inline-block; background: var(--forest); color: #fff;
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; margin-bottom: 1rem; font-weight: 500;
+    }
+
+    /* ── IMPACT ── */
+    #impact { background: var(--warm-white); }
+    .impact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .impact-card {
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 3rem;
+    }
+    .impact-card-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .impact-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400; color: var(--deep);
+      margin-bottom: 1rem;
+    }
+    .impact-list { list-style: none; }
+    .impact-list li {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      padding: 0.6rem 0; border-bottom: 1px solid rgba(201,168,76,0.1);
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; font-weight: 300;
+    }
+    .impact-list li::before { content: '◆'; color: var(--gold); font-size: 0.5rem; margin-top: 0.4rem; flex-shrink: 0; }
+
+    /* ── ROTARY ── */
+    #rotary { background: var(--forest); color: var(--cream); }
+    #rotary .section-title { color: var(--cream); }
+    #rotary .section-title em { color: var(--gold-light); }
+    .rotary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .rotary-card {
+      background: rgba(26,18,8,0.4); border: 1px solid rgba(201,168,76,0.15);
+      padding: 2rem; transition: all 0.3s;
+    }
+    .rotary-card:hover {
+      background: rgba(26,18,8,0.7); border-color: rgba(201,168,76,0.4);
+      transform: translateY(-4px);
+    }
+    .rotary-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .rotary-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--gold-light); margin-bottom: 0.6rem; font-weight: 400;
+    }
+    .rotary-card p { font-size: 0.85rem; color: rgba(247,242,232,0.65); line-height: 1.65; font-weight: 300; }
+
+    /* ── VALUES ── */
+    #values { background: var(--cream); }
+    .values-center { text-align: center; max-width: 680px; margin: 0 auto 4rem; }
+    .values-center .section-eyebrow { justify-content: center; }
+    .values-center .section-eyebrow::before { display: none; }
+    .values-center .divider { margin-left: auto; margin-right: auto; }
+    .values-center p {
+      font-size: 1rem; line-height: 1.85; color: var(--text-muted); font-weight: 300;
+    }
+    .traits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .trait {
+      background: var(--deep); padding: 2.5rem 1.5rem; text-align: center;
+    }
+    .trait-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .trait-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--gold-light); font-weight: 300; font-style: italic;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--deep); padding: 6rem 0;
+      text-align: center;
+    }
+    #contact .section-title { color: var(--cream); }
+    #contact .section-eyebrow { justify-content: center; }
+    #contact .section-eyebrow::before { display: none; }
+    #contact .divider { margin: 1.5rem auto 2.5rem; }
+    .contact-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-style: italic; color: rgba(247,242,232,0.6);
+      font-weight: 300; margin-bottom: 3rem;
+    }
+    .contact-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 1rem 2.5rem; background: var(--gold); color: var(--deep);
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 600; text-decoration: none; border: 1px solid var(--gold);
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline {
+      padding: 1rem 2.5rem; background: transparent; color: var(--cream);
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; text-decoration: none; border: 1px solid rgba(247,242,232,0.3);
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0E0A04;
+      padding: 2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    footer p { font-size: 0.72rem; color: rgba(247,242,232,0.3); letter-spacing: 0.08em; }
+    .footer-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: rgba(201,168,76,0.4); font-style: italic;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { display: none; }
+      .video-controls { flex-wrap: wrap; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 5rem; }
+      .hero-left { padding: 3rem 2rem; }
+      .hero-right { padding: 2rem; }
+      .hero-photo-frame { width: 300px; height: 380px; }
+      .about-grid, .advocacy-grid, .impact-split { grid-template-columns: 1fr; gap: 3rem; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .rotary-grid { grid-template-columns: 1fr; }
+      .traits-grid { grid-template-columns: repeat(2, 1fr); }
+      .container { padding: 0 2rem; }
+      section { padding: 4rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Rekha Sankhala</a>
+  <ul class="nav-links">
+    <li><a href="#video">Video</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#achievement">Achievement</a></li>
+    <li><a href="#advocacy">Advocacy</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#rotary">Rotary</a></li>
+    <li><a href="#contact">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-tag">President · Rotary Club of Navi Mumbai</div>
+    <h1 class="hero-name">Rekha<br><em>Sankhala</em></h1>
+    <div class="hero-roles">
+      <span>Environmental Leader</span>
+      <span>Corporate Strategist</span>
+      <span>Community Changemaker</span>
+    </div>
+    <a href="#about" class="hero-cta">Discover Her Story &rarr;</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <!-- Photo placeholder — replace src with actual photo path -->
+      <img src="rekha-photo.jpg" alt="Rekha Sankhala" onerror="this.style.background='linear-gradient(135deg,#2D4A2D,#1A1208)';this.style.display='block'" />
+      <div class="hero-photo-badge">
+        <strong>20+</strong>
+        <span>Years of Impact</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="container">
+    <div class="section-eyebrow fade-up">Watch Her Story</div>
+    <h2 class="section-title fade-up">Rekha <em>In Her Own Words</em></h2>
+    <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+    <div class="video-wrapper fade-up">
+      <video id="rekhaVideo" controls playsinline preload="metadata" poster="">
+        <source src="Rekha.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-controls">
+        <button type="button" id="playPauseBtn" aria-label="Play/Pause">▶ Play</button>
+        <button type="button" id="muteBtn" aria-label="Mute/Unmute">🔊 Mute</button>
+        <button type="button" id="fullscreenBtn" aria-label="Fullscreen">⛶ Fullscreen</button>
+      </div>
+    </div>
+    <p class="video-caption fade-up">Environmental Leader · Community Changemaker · Woman of Substance</p>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid fade-up">
+      <div class="about-left">
+        <div class="about-ornament">"</div>
+        <p class="about-quote">
+          Transforming devotion into sustainability, activism into policy impact, and service into measurable societal change.
+        </p>
+        <div class="cert-pills" style="margin-top:2rem;">
+          <span class="pill">Certified Coach</span>
+          <span class="pill">Leadership Trainer</span>
+          <span class="pill">Environmental Advocate</span>
+          <span class="pill">Artist & Creative Mentor</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-eyebrow">Profile Overview</div>
+        <h2 class="section-title">A Leader Who <em>Bridges Worlds</em></h2>
+        <div class="divider"></div>
+        <p>Rekha Sankhala is a transformational leader who bridges <strong>corporate strategy, environmental activism, and grassroots community service</strong>. With over two decades of experience in Organizational Development and Learning Solutions, she has held leadership positions with the <strong>Reliance ADA Group</strong> and <strong>NIS Sparta</strong>, managing national-level training deployments and corporate partnerships.</p>
+        <p>Her work reflects systems thinking — solving complex problems through collaboration, sustainability, and measurable impact. She leads with courage, compassion, and conviction, channeling personal adversity into transformative community action.</p>
+        <p>As a <strong>Woman of Substance Award recipient</strong>, Rekha exemplifies what purposeful leadership looks like — from boardrooms to waterfronts, from policy corridors to classrooms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENT -->
+<section id="achievement">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-eyebrow" style="color:var(--gold)">Breakthrough Achievement</div>
+      <h2 class="section-title">India's <em>POP Idol Crisis</em> — Solved</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="achievement-hero fade-up">
+      <h3>Circular Solution to the POP Idol Crisis</h3>
+      <p>Maharashtra generates over <strong>4,500 tonnes</strong> of Plaster of Paris waste annually during Ganesh Festival. Under Rekha's leadership, Rotary spearheaded Navi Mumbai's first scalable end-to-end circular model — transforming sacred waste into sustainable educational resources.</p>
+    </div>
+
+    <div class="process-chain fade-up">
+      <div class="process-step">
+        <div class="step-icon">🏺</div>
+        <div class="step-label">Collection</div>
+      </div>
+      <div class="process-step">
+        <div class="step-icon">🚛</div>
+        <div class="step-label">Low-Carbon Transport</div>
+      </div>
+      <div class="process-step">
+        <div class="step-icon">♻️</div>
+        <div class="step-label">Eco-Processing</div>
+      </div>
+      <div class="process-step">
+        <div class="step-icon">🪑</div>
+        <div class="step-label">Desk Creation</div>
+      </div>
+      <div class="process-step">
+        <div class="step-icon">🎓</div>
+        <div class="step-label">Distribution</div>
+      </div>
+    </div>
+
+    <div class="metrics-grid fade-up">
+      <div class="metric-card">
+        <div class="metric-num">2,500</div>
+        <div class="metric-unit">kg</div>
+        <div class="metric-label">POP waste prevented from polluting water bodies</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">4,250</div>
+        <div class="metric-unit">kg CO₂</div>
+        <div class="metric-label">Carbon emissions reduced</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">760</div>
+        <div class="metric-unit">Desks</div>
+        <div class="metric-label">Eco-study desks distributed to NMMC schools</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">1st</div>
+        <div class="metric-unit">In India</div>
+        <div class="metric-label">Replicable sacred-to-sustainable circular model</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVOCACY -->
+<section id="advocacy">
+  <div class="container">
+    <div class="advocacy-grid">
+      <div class="advocacy-text fade-up">
+        <div class="section-eyebrow">Environmental Advocacy</div>
+        <h2 class="section-title">A <em>Landmark Victory</em> for Nature</h2>
+        <div class="divider"></div>
+        <span class="ngt-label">National Green Tribunal · Pune</span>
+        <p>Rekha led a citizen movement that culminated in a <strong>historic victory at the National Green Tribunal</strong> — successfully preventing the auctioning of ecologically sensitive CRZ land in Nerul.</p>
+        <p>This land, rich with mangroves and flamingo habitats, was saved from commercial exploitation — a rare instance of <strong>citizen-led environmental justice</strong> protecting Navi Mumbai's biodiversity for future generations.</p>
+        <p>The judgment stands as a precedent and a testament to what informed, persistent civic action can achieve.</p>
+      </div>
+      <div class="advocacy-visual fade-up">
+        <div class="mangrove-art">🌿<br>🦩<br>🌊</div>
+        <div class="advocacy-badge">
+          <div class="advocacy-badge-icon">⚖️</div>
+          <div class="advocacy-badge-text">
+            <strong>NGT Victory</strong>
+            <span>Citizen-Led Environmental Justice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:600px; margin: 0 auto 4rem;">
+      <div class="section-eyebrow" style="justify-content:center;">
+        <span>National Impact</span>
+      </div>
+      <h2 class="section-title">Skills, <em>Livelihoods</em> & Leadership</h2>
+      <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+    </div>
+    <div class="impact-split fade-up">
+      <div class="impact-card">
+        <div class="impact-card-icon">🏭</div>
+        <h3>Livelihood & Skill Development</h3>
+        <ul class="impact-list">
+          <li>Enabled placement of 19,000 BPL youth across India</li>
+          <li>Worked under MORD skill development initiatives</li>
+          <li>Managed 50–70 training deployments per month nationally</li>
+          <li>Built corporate learning partnerships across sectors</li>
+          <li>Consulted for leading Indian and multinational organizations</li>
+        </ul>
+      </div>
+      <div class="impact-card">
+        <div class="impact-card-icon">🌱</div>
+        <h3>Corporate & Community Leadership</h3>
+        <ul class="impact-list">
+          <li>20+ years in Organizational Development & Learning Solutions</li>
+          <li>Senior roles at Reliance ADA Group & NIS Sparta</li>
+          <li>National-level training deployments & program management</li>
+          <li>Systems-based approach to community problem-solving</li>
+          <li>CSR collaborations for sustainable development</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROTARY -->
+<section id="rotary">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-eyebrow" style="color:var(--gold)">Rotary & Community</div>
+      <h2 class="section-title">Service <em>Above Self</em></h2>
+      <div class="divider"></div>
+    </div>
+    <p style="color:rgba(247,242,232,0.65);font-size:1rem;line-height:1.8;max-width:640px;font-weight:300;margin-bottom:0.5rem;" class="fade-up">
+      As <strong style="color:var(--gold-light)">President of the Rotary Club of Navi Mumbai Joy of Giving (RID 3142)</strong>, Rekha has built a movement that turns compassion into action — across health, education, environment, and entrepreneurship.
+    </p>
+    <div class="rotary-grid fade-up">
+      <div class="rotary-card">
+        <div class="rotary-card-icon">🌀</div>
+        <h4>Club Formation</h4>
+        <p>Instrumental in forming and chartering new Rotary clubs, expanding the network of service across the region.</p>
+      </div>
+      <div class="rotary-card">
+        <div class="rotary-card-icon">🩸</div>
+        <h4>Thalassemia Awareness</h4>
+        <p>Led medical support and awareness campaigns for Thalassemia patients and families across Navi Mumbai.</p>
+      </div>
+      <div class="rotary-card">
+        <div class="rotary-card-icon">👩‍💼</div>
+        <h4>Women Entrepreneurship</h4>
+        <p>Championed women's economic empowerment through training, mentorship, and community-enterprise programs.</p>
+      </div>
+      <div class="rotary-card">
+        <div class="rotary-card-icon">🌍</div>
+        <h4>Environmental Conservation</h4>
+        <p>Drove environmental programs blending scientific rigor with cultural sensitivity and community participation.</p>
+      </div>
+      <div class="rotary-card">
+        <div class="rotary-card-icon">🏫</div>
+        <h4>Youth Leadership</h4>
+        <p>Promoted youth leadership development, creating pathways for the next generation of changemakers.</p>
+      </div>
+      <div class="rotary-card">
+        <div class="rotary-card-icon">🤝</div>
+        <h4>CSR Collaborations</h4>
+        <p>Built bridges between corporate social responsibility goals and grassroots community needs for lasting impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="container">
+    <div class="values-center fade-up">
+      <div class="section-eyebrow">Personal Resilience & Values</div>
+      <h2 class="section-title">Courage, <em>Compassion</em> & Conviction</h2>
+      <div class="divider"></div>
+      <p>During a personal sabbatical while supporting her father through colon cancer, Rekha emerged stronger — channeling adversity into advocacy and community action. Her journey is a testament to resilience, purpose, and the power of leading from the heart.</p>
+    </div>
+    <div class="traits-grid fade-up">
+      <div class="trait">
+        <div class="trait-icon">🎯</div>
+        <div class="trait-name">Purpose-Driven</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">🌿</div>
+        <div class="trait-name">Environmentalist</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">🎨</div>
+        <div class="trait-name">Artist & Mentor</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">💡</div>
+        <div class="trait-name">Systems Thinker</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-eyebrow" style="justify-content:center; color:var(--gold)">Get In Touch</div>
+    <h2 class="section-title">Let's <em>Create Impact</em> Together</h2>
+    <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+    <p class="contact-tagline">Collaborations · Speaking Engagements · Partnerships</p>
+    <div class="contact-buttons">
+      <a href="mailto:rekha@example.com" class="btn-primary">Send a Message</a>
+      <a href="https://www.linkedin.com" target="_blank" class="btn-outline">LinkedIn Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Rekha Sankhala · All Rights Reserved</p>
+  <div class="footer-badge">Woman of Substance</div>
+  <p>President · Rotary Club of Navi Mumbai Joy of Giving · RID 3142</p>
+</footer>
+
+<script>
+  // Video controls
+  (function() {
+    const video = document.getElementById('rekhaVideo');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const videoWrapper = document.querySelector('.video-wrapper');
+
+    if (video && playPauseBtn) {
+      playPauseBtn.addEventListener('click', function() {
+        if (video.paused) {
+          video.play();
+          playPauseBtn.textContent = '⏸ Pause';
+        } else {
+          video.pause();
+          playPauseBtn.textContent = '▶ Play';
+        }
+      });
+      video.addEventListener('play', () => { playPauseBtn.textContent = '⏸ Pause'; });
+      video.addEventListener('pause', () => { playPauseBtn.textContent = '▶ Play'; });
+    }
+
+    if (video && muteBtn) {
+      muteBtn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        muteBtn.textContent = video.muted ? '🔇 Unmute' : '🔊 Mute';
+      });
+    }
+
+    if (video && fullscreenBtn && videoWrapper) {
+      fullscreenBtn.addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+          videoWrapper.requestFullscreen?.() || video.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      });
+    }
+  })();
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold-light)'
+        : 'rgba(247,242,232,0.75)';
+    });
+  });
+</script>
+</body>
+</html>
