@@ -418,6 +418,54 @@
       font-size: 0.95rem; color: rgba(247,242,232,0.85);
       line-height: 1.75; max-width: 800px;
     }
+    .monitor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .monitor-card {
+      border: 1px solid rgba(201,168,76,0.2);
+      background: var(--cream);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .monitor-card .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .monitor-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--deep);
+      margin-bottom: 0.8rem;
+    }
+    .monitor-card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .monitor-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--forest);
+      text-decoration: none;
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .monitor-card a:hover { color: var(--gold); }
     .blueprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
     .blueprint-card {
       border: 1px solid rgba(201,168,76,0.25);
@@ -506,6 +554,7 @@
 
     @media (max-width: 900px) {
       .blueprint-grid { grid-template-columns: 1fr; }
+      .monitor-grid { grid-template-columns: 1fr; }
       .blueprint-domains { grid-template-columns: repeat(2, 1fr); }
       .financial-metrics { grid-template-columns: repeat(2, 1fr); }
       .comparison-table { font-size: 0.75rem; }
@@ -692,6 +741,7 @@
     <li><a href="#advocacy">Advocacy</a></li>
     <li><a href="#impact">Impact</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#water-monitor">Water Monitor</a></li>
     <li><a href="#technology">Technology</a></li>
     <li><a href="#philosophy">Philosophy</a></li>
     <li><a href="#funding">Funding</a></li>
@@ -1126,6 +1176,40 @@
           </p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- WATER MONITOR -->
+<section id="water-monitor">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:760px; margin: 0 auto 3rem;">
+      <div class="section-eyebrow" style="justify-content:center;">Water Monitor</div>
+      <h2 class="section-title">Environmental Reports <em>Made Public-Facing</em></h2>
+      <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+      <p style="font-size:1rem; line-height:1.8; color:var(--text-muted);">
+        A set of presentation-ready public pages covering community water quality alerts, festival-linked aquatic impact, and a broader environmental command-centre concept.
+      </p>
+    </div>
+    <div class="monitor-grid fade-up">
+      <article class="monitor-card">
+        <div class="eyebrow">Issue 001</div>
+        <h3>DPS Holding Pond Report</h3>
+        <p>A community bulletin based on the NMMC Environment Department analysis for the DPS Holding Pond in Belapur, highlighting critical chloride and sulphate overload.</p>
+        <a href="Water%20Monitor/DPS_Water_Quality_Newsletter.html">Open report &rarr;</a>
+      </article>
+      <article class="monitor-card">
+        <div class="eyebrow">Issue 002</div>
+        <h3>Ganesh Festival Water Watch</h3>
+        <p>A Maharashtra-wide special edition compiling festival-period water quality deterioration across multiple rivers, lakes, and wells using MPCB monitoring data.</p>
+        <a href="Water%20Monitor/water_watch_002.html">Open report &rarr;</a>
+      </article>
+      <article class="monitor-card">
+        <div class="eyebrow">Pilot Pitch</div>
+        <h3>Recyclothon Command Centre</h3>
+        <p>A companion pitch page showing how live dashboards, traceability, and sponsor-grade reporting can make environmental recovery work measurable and funding-ready.</p>
+        <a href="Water%20Monitor/recyclothon_command_centre.html">Open page &rarr;</a>
+      </article>
     </div>
   </div>
 </section>

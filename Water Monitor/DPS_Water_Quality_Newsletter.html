@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPS Holding Pond — Water Quality Report · NMMC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1b2a;
+    --paper: #f5f0e8;
+    --cream: #ede8dc;
+    --accent: #c8441a;
+    --accent2: #1a6c8c;
+    --gold: #b8922a;
+    --warn: #d64e12;
+    --ok: #2e7d52;
+    --mid: #b8922a;
+    --rule: #0d1b2a22;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    padding: 36px 0 20px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    gap: 12px;
+  }
+
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.6;
+    line-height: 1.7;
+  }
+
+  .masthead-title {
+    text-align: center;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .masthead-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .masthead-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.5;
+    margin-top: 6px;
+  }
+
+  .masthead-right { text-align: right; }
+
+  /* ── BANNER STRIP ── */
+  .banner {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 7px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .banner span { color: var(--accent); margin: 0 8px; }
+
+  /* ── SECTION RULE ── */
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0 20px;
+  }
+  .section-rule::before, .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ink);
+    opacity: 0.2;
+  }
+  .section-rule-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+
+  /* ── HEADLINE ARTICLE ── */
+  .headline-block {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 32px;
+    align-items: start;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+  }
+
+  .headline-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .headline-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+
+  .headline-h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .lead-text {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink);
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  /* ── POND ILLUSTRATION ── */
+  .pond-viz {
+    position: relative;
+  }
+
+  /* ── STATUS BADGE ── */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--warn);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    margin-bottom: 16px;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: white;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── PARAMETERS GRID ── */
+  .params-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 28px 0;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+  }
+
+  .param-card {
+    background: var(--paper);
+    padding: 16px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .param-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .param-card.ok::before { background: var(--ok); }
+  .param-card.warn::before { background: var(--warn); }
+  .param-card.note::before { background: var(--mid); }
+
+  .param-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 8px;
+  }
+
+  .param-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .param-card.ok .param-value { color: var(--ok); }
+  .param-card.warn .param-value { color: var(--warn); }
+  .param-card.note .param-value { color: var(--mid); }
+
+  .param-unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    opacity: 0.45;
+    margin-bottom: 10px;
+  }
+
+  .param-limit {
+    font-size: 10px;
+    opacity: 0.55;
+    line-height: 1.5;
+  }
+
+  .param-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    padding: 3px 7px;
+    display: inline-block;
+  }
+
+  .param-card.ok .param-status { background: #2e7d5215; color: var(--ok); }
+  .param-card.warn .param-status { background: #d64e1215; color: var(--warn); }
+  .param-card.note .param-status { background: #b8922a15; color: var(--mid); }
+
+  /* ── BAR CHARTS ── */
+  .bar-section {
+    margin: 28px 0;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 80px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: right;
+    opacity: 0.6;
+  }
+
+  .bar-track {
+    height: 20px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    position: absolute;
+    left: 0; top: 0;
+    transition: width 0.8s ease;
+  }
+
+  .bar-limit-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--ink);
+    opacity: 0.3;
+    z-index: 2;
+  }
+
+  .bar-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  /* ── EXPLAINER BOXES ── */
+  .explainer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .explainer-box {
+    border: 1px solid var(--rule);
+    padding: 20px;
+    position: relative;
+  }
+
+  .explainer-box.highlight {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .explainer-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .explainer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .explainer-body {
+    font-size: 12px;
+    line-height: 1.65;
+    opacity: 0.75;
+  }
+
+  .explainer-box.highlight .explainer-body { opacity: 0.8; }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin: 32px 0;
+    background: var(--cream);
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .pull-quote cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    font-style: normal;
+  }
+
+  /* ── TWO-COL ARTICLE ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 24px 0;
+  }
+
+  .article-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .article-body {
+    font-size: 13px;
+    line-height: 1.75;
+    opacity: 0.8;
+  }
+
+  .article-body p + p { margin-top: 10px; }
+
+  /* ── WATER DIAGRAM SVG ── */
+  .diagram-wrap {
+    margin: 28px 0;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .diagram-caption {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    margin-top: 12px;
+  }
+
+  /* ── RECOMMENDATIONS ── */
+  .rec-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+
+  .rec-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .rec-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .rec-text strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-size: 13px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 3px double var(--ink);
+    padding-top: 18px;
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.4;
+    line-height: 1.7;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-right { text-align: right; }
+
+  /* ── ORNAMENT ── */
+  .ornament {
+    text-align: center;
+    font-size: 18px;
+    opacity: 0.25;
+    margin: 8px 0;
+  }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 16px 0;
+  }
+
+  .data-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+
+  .status-ok { color: var(--ok); font-weight: 600; }
+  .status-warn { color: var(--warn); font-weight: 600; }
+  .status-note { color: var(--mid); font-weight: 600; }
+
+  /* animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page > * {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .page > *:nth-child(1) { animation-delay: 0.05s; }
+  .page > *:nth-child(2) { animation-delay: 0.1s; }
+  .page > *:nth-child(3) { animation-delay: 0.15s; }
+  .page > *:nth-child(4) { animation-delay: 0.2s; }
+  .page > *:nth-child(5) { animation-delay: 0.25s; }
+
+  @media (max-width: 600px) {
+    .masthead { grid-template-columns: 1fr; text-align: center; }
+    .masthead-right { display: none; }
+    .headline-block { grid-template-columns: 1fr; }
+    .params-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .explainer-grid { grid-template-columns: 1fr; }
+    .masthead-name { font-size: 28px; }
+    .footer { grid-template-columns: 1fr; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      Issue No. 001<br>
+      30 March 2026<br>
+      Belapur Zone
+    </div>
+    <div class="masthead-title">
+      <span class="masthead-eyebrow">Rotary Club of Navi Mumbai Nerul · Joy of Giving</span>
+      <div class="masthead-name">Water Watch</div>
+      <div class="masthead-sub">DPS Holding Pond · Community Quality Bulletin</div>
+    </div>
+    <div class="masthead-meta masthead-right">
+      Data Source<br>
+      NMMC Environment<br>
+      Department, Navi Mumbai
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <div class="banner">
+    Rotary Club Navi Mumbai Nerul <span>◆</span> Joy of Giving Initiative <span>◆</span> Community Water Safety Alert
+  </div>
+
+  <!-- ROTARY ISSUER NOTE -->
+  <div style="border:1px solid var(--rule);background:var(--cream);padding:14px 20px;margin-bottom:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="flex-shrink:0;width:42px;height:42px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 42 42" width="42" height="42" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="21" cy="21" r="20" fill="#0d1b2a"/>
+        <circle cx="21" cy="21" r="13" fill="none" stroke="#f5c842" stroke-width="2.5"/>
+        <circle cx="21" cy="21" r="5" fill="#f5c842"/>
+        <line x1="21" y1="8" x2="21" y2="4" stroke="#f5c842" stroke-width="2"/>
+        <line x1="21" y1="34" x2="21" y2="38" stroke="#f5c842" stroke-width="2"/>
+        <line x1="8" y1="21" x2="4" y2="21" stroke="#f5c842" stroke-width="2"/>
+        <line x1="34" y1="21" x2="38" y2="21" stroke="#f5c842" stroke-width="2"/>
+        <line x1="11.5" y1="11.5" x2="8.7" y2="8.7" stroke="#f5c842" stroke-width="2"/>
+        <line x1="30.5" y1="30.5" x2="33.3" y2="33.3" stroke="#f5c842" stroke-width="2"/>
+        <line x1="30.5" y1="11.5" x2="33.3" y2="8.7" stroke="#f5c842" stroke-width="2"/>
+        <line x1="11.5" y1="30.5" x2="8.7" y2="33.3" stroke="#f5c842" stroke-width="2"/>
+      </svg>
+    </div>
+    <div style="flex:1;min-width:200px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;">Published by</div>
+      <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;">Rekha Sankhala</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;opacity:0.55;letter-spacing:0.1em;">President · Rotary Club of Navi Mumbai Nerul (RCNN) · Joy of Giving</div>
+    </div>
+    <div style="border-left:1px solid var(--rule);padding-left:16px;flex:1;min-width:180px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent2);margin-bottom:3px;">Report Source</div>
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;">NMMC Environment Department</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;opacity:0.55;letter-spacing:0.1em;">Navi Mumbai Municipal Corporation · ISO 9001:2015 Certified</div>
+    </div>
+    <div style="border-left:1px solid var(--rule);padding-left:16px;flex:1;min-width:160px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;">Newsletter Generated by</div>
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;">Vikram Sankhala</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;opacity:0.55;letter-spacing:0.1em;">Data Analysis &amp; Report Design · April 2026</div>
+    </div>
+  </div>
+
+  <!-- HEADLINE -->
+  <section class="headline-block">
+    <div>
+      <div class="headline-kicker">Water Quality Report · Complaint Sample · 20 Mar 2026</div>
+      <h1 class="headline-h1">DPS Holding Pond Water Shows <em>Critical</em> Salt Overload</h1>
+      <div class="status-badge">
+        <div class="status-dot"></div>
+        Exceeds permissible limits
+      </div>
+      <p class="lead-text">
+        Lab analysis of complaint samples from the DPS Holding Pond, Belapur, reveals chloride levels nearly <strong>8× above the safe limit</strong> and sulphate concentrations more than twice the acceptable threshold. While pH and BOD remain within range, the salinity surge signals significant contamination that demands urgent investigation and remediation.
+      </p>
+    </div>
+    <div class="pond-viz">
+      <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:200px;">
+        <!-- Sky -->
+        <rect width="200" height="240" fill="#e8e2d4" rx="4"/>
+        <!-- Ground -->
+        <ellipse cx="100" cy="200" rx="90" ry="18" fill="#c5b99a"/>
+        <!-- Pond water -->
+        <ellipse cx="100" cy="180" rx="75" ry="28" fill="#7ab5c8" opacity="0.7"/>
+        <ellipse cx="100" cy="175" rx="72" ry="24" fill="#5a9ab5" opacity="0.5"/>
+        <!-- Salt crystals on water -->
+        <g opacity="0.9">
+          <polygon points="85,165 89,158 93,165" fill="white" opacity="0.8"/>
+          <polygon points="100,170 104,163 108,170" fill="white" opacity="0.75"/>
+          <polygon points="115,162 119,155 123,162" fill="white" opacity="0.8"/>
+          <polygon points="72,172 76,165 80,172" fill="white" opacity="0.7"/>
+          <polygon points="128,168 132,161 136,168" fill="white" opacity="0.8"/>
+        </g>
+        <!-- Warning ripples -->
+        <ellipse cx="100" cy="178" rx="40" ry="10" fill="none" stroke="#c8441a" stroke-width="1" opacity="0.5"/>
+        <ellipse cx="100" cy="178" rx="55" ry="14" fill="none" stroke="#c8441a" stroke-width="0.5" opacity="0.3"/>
+        <!-- Trees -->
+        <rect x="28" y="148" width="6" height="20" fill="#7a6b52"/>
+        <ellipse cx="31" cy="145" rx="12" ry="14" fill="#4a7c59"/>
+        <rect x="162" y="150" width="6" height="18" fill="#7a6b52"/>
+        <ellipse cx="165" cy="147" rx="11" ry="13" fill="#4a7c59"/>
+        <!-- Sun -->
+        <circle cx="165" cy="38" r="14" fill="#e8b84b" opacity="0.85"/>
+        <line x1="165" y1="18" x2="165" y2="14" stroke="#e8b84b" stroke-width="1.5" opacity="0.6"/>
+        <line x1="165" y1="58" x2="165" y2="62" stroke="#e8b84b" stroke-width="1.5" opacity="0.6"/>
+        <line x1="145" y1="38" x2="141" y2="38" stroke="#e8b84b" stroke-width="1.5" opacity="0.6"/>
+        <line x1="185" y1="38" x2="189" y2="38" stroke="#e8b84b" stroke-width="1.5" opacity="0.6"/>
+        <!-- Warning icon -->
+        <polygon points="100,88 115,115 85,115" fill="#c8441a" opacity="0.9"/>
+        <text x="100" y="110" text-anchor="middle" font-size="14" fill="white" font-weight="bold">!</text>
+        <!-- Labels -->
+        <text x="100" y="135" text-anchor="middle" font-size="7" fill="#c8441a" font-family="monospace" letter-spacing="1">CONTAMINATED</text>
+        <!-- Salt label -->
+        <text x="100" y="192" text-anchor="middle" font-size="6.5" fill="white" font-family="monospace" opacity="0.9">HIGH SALINITY</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SECTION RULE -->
+  <div class="section-rule"><span class="section-rule-label">Parameter Analysis</span></div>
+
+  <!-- PARAMS GRID -->
+  <div class="params-grid">
+    <div class="param-card ok">
+      <div class="param-name">pH Level</div>
+      <div class="param-value">7.5</div>
+      <div class="param-unit">unitless</div>
+      <div class="param-limit">Limit: 5.5 – 9.0</div>
+      <div class="param-status">✓ Within Limits</div>
+    </div>
+    <div class="param-card warn">
+      <div class="param-name">Suspended Solids</div>
+      <div class="param-value">1446</div>
+      <div class="param-unit">mg/L</div>
+      <div class="param-limit">No prescribed limit listed</div>
+      <div class="param-status">⚑ Very High</div>
+    </div>
+    <div class="param-card ok">
+      <div class="param-name">Dissolved Oxygen</div>
+      <div class="param-value">12.6</div>
+      <div class="param-unit">mg/L</div>
+      <div class="param-limit">Limit: 4.0 – 7.0 mg/L</div>
+      <div class="param-status">↑ Above Range</div>
+    </div>
+    <div class="param-card ok">
+      <div class="param-name">BOD</div>
+      <div class="param-value">99</div>
+      <div class="param-unit">mg/L</div>
+      <div class="param-limit">Limit: &lt;100 mg/L</div>
+      <div class="param-status">✓ Borderline OK</div>
+    </div>
+    <div class="param-card warn">
+      <div class="param-name">Chloride</div>
+      <div class="param-value">7778</div>
+      <div class="param-unit">mg/L</div>
+      <div class="param-limit">Limit: &lt;1000 mg/L</div>
+      <div class="param-status">✕ 7.8× Over Limit</div>
+    </div>
+    <div class="param-card warn">
+      <div class="param-name">Sulphate</div>
+      <div class="param-value">2331</div>
+      <div class="param-unit">mg/L</div>
+      <div class="param-limit">Limit: &lt;1000 mg/L</div>
+      <div class="param-status">✕ 2.3× Over Limit</div>
+    </div>
+  </div>
+
+  <!-- BAR CHART -->
+  <div class="section-rule"><span class="section-rule-label">How Far Over the Limit?</span></div>
+
+  <div class="bar-section">
+    <!-- Chloride -->
+    <div class="bar-row">
+      <div class="bar-label">Chloride</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:100%; background: linear-gradient(90deg, #d64e12cc, #d64e12);"></div>
+        <div class="bar-limit-line" style="left:12.85%;"></div>
+      </div>
+      <div class="bar-val status-warn">7778.44</div>
+    </div>
+    <!-- Sulphate -->
+    <div class="bar-row">
+      <div class="bar-label">Sulphate</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:42.9%; background: linear-gradient(90deg, #b8922a99, #b8922a);"></div>
+        <div class="bar-limit-line" style="left:18.5%;"></div>
+      </div>
+      <div class="bar-val status-note">2330.77</div>
+    </div>
+    <!-- SS -->
+    <div class="bar-row">
+      <div class="bar-label">Susp. Solids</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:26.3%; background: linear-gradient(90deg, #1a6c8c88, #1a6c8c);"></div>
+      </div>
+      <div class="bar-val" style="color:var(--accent2)">1446</div>
+    </div>
+    <!-- BOD -->
+    <div class="bar-row">
+      <div class="bar-label">BOD</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:1.8%; background: linear-gradient(90deg, #2e7d5288, #2e7d52);"></div>
+        <div class="bar-limit-line" style="left:1.82%;"></div>
+      </div>
+      <div class="bar-val status-ok">99</div>
+    </div>
+    <!-- DO -->
+    <div class="bar-row">
+      <div class="bar-label">Dissolved O₂</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:0.23%; background: #2e7d52;"></div>
+      </div>
+      <div class="bar-val status-ok">12.6</div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:8px;opacity:0.4;letter-spacing:0.1em;text-transform:uppercase;padding-left:122px;margin-top:4px;">
+      ◆ Vertical line = permissible limit &nbsp;|&nbsp; Bar = measured value
+    </div>
+  </div>
+
+  <!-- PULL QUOTE -->
+  <div class="pull-quote">
+    <p>"Our community deserves clean, safe water. The data from DPS Holding Pond is alarming — and the Rotary Club will not stay silent while our neighbourhood's environment is at risk."</p>
+    <cite>— Rekha Sankhala, President · Rotary Club of Navi Mumbai Nerul (RCNN) · Joy of Giving</cite>
+  </div>
+
+  <!-- DATA TABLE -->
+  <div class="section-rule"><span class="section-rule-label">Complete Results at a Glance</span></div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Measured Value</th>
+        <th>Permissible Limit</th>
+        <th>Status</th>
+        <th>Ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pH</td>
+        <td>7.5</td>
+        <td>5.5 – 9.0</td>
+        <td class="status-ok">✓ Pass</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Suspended Solids (S.S.)</td>
+        <td>1446 mg/L</td>
+        <td>Not specified</td>
+        <td class="status-note">⚑ Monitor</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Dissolved Oxygen (D.O.)</td>
+        <td>12.6 mg/L</td>
+        <td>4.0 – 7.0 mg/L</td>
+        <td class="status-note">↑ Elevated</td>
+        <td>1.8×</td>
+      </tr>
+      <tr>
+        <td>BOD</td>
+        <td>99 mg/L</td>
+        <td>&lt;100 mg/L</td>
+        <td class="status-ok">✓ Borderline</td>
+        <td>0.99×</td>
+      </tr>
+      <tr>
+        <td>Nitrate</td>
+        <td>0.028 mg/L</td>
+        <td>&lt;20 mg/L</td>
+        <td class="status-ok">✓ Pass</td>
+        <td>0.001×</td>
+      </tr>
+      <tr>
+        <td>Nitrite</td>
+        <td>0.163 mg/L</td>
+        <td>—</td>
+        <td class="status-ok">✓ Low</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Phosphate</td>
+        <td>0.328 mg/L</td>
+        <td>&lt;5 mg/L</td>
+        <td class="status-ok">✓ Pass</td>
+        <td>0.07×</td>
+      </tr>
+      <tr>
+        <td><strong>Chloride</strong></td>
+        <td><strong>7778.44 mg/L</strong></td>
+        <td>&lt;1000 mg/L</td>
+        <td class="status-warn">✕ CRITICAL</td>
+        <td><strong>7.8×</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Sulphate</strong></td>
+        <td><strong>2330.77 mg/L</strong></td>
+        <td>&lt;1000 mg/L</td>
+        <td class="status-warn">✕ CRITICAL</td>
+        <td><strong>2.3×</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- EXPLAINERS -->
+  <div class="section-rule"><span class="section-rule-label">What Does This Mean?</span></div>
+  <div class="explainer-grid">
+    <div class="explainer-box highlight">
+      <span class="explainer-icon">🧂</span>
+      <div class="explainer-title">Why Is High Chloride Dangerous?</div>
+      <p class="explainer-body">Chloride is the "salt" in saltwater. At 7,778 mg/L — nearly 8× the safe limit — the pond water is saltier than many brackish estuaries. This can corrode pipes and infrastructure, harm aquatic life, make water unfit for irrigation, and indicate illegal discharge of industrial brine or saline effluent into the holding pond.</p>
+    </div>
+    <div class="explainer-box">
+      <span class="explainer-icon">⚗️</span>
+      <div class="explainer-title">What Does Elevated Sulphate Indicate?</div>
+      <p class="explainer-body">Sulphate at 2,331 mg/L (2.3× the limit) can cause a bitter taste in water, trigger diarrhoea at high doses, and in stagnant ponds it fuels the growth of sulphate-reducing bacteria — producing foul-smelling hydrogen sulphide gas. It is often a marker of construction runoff, chemical dumps, or sewage infiltration.</p>
+    </div>
+    <div class="explainer-box">
+      <span class="explainer-icon">💧</span>
+      <div class="explainer-title">BOD At 99 — Just Barely Safe</div>
+      <p class="explainer-body">Biochemical Oxygen Demand measures how much organic waste is decomposing in the water. The safe limit is 100 mg/L, and the pond sits at 99 — technically within range but at the very edge. Combined with 1,446 mg/L of suspended solids, the pond is turbid and ecologically stressed. Any further organic load could push it into failure.</p>
+    </div>
+    <div class="explainer-box">
+      <span class="explainer-icon">✅</span>
+      <div class="explainer-title">What's Still OK?</div>
+      <p class="explainer-body">pH at 7.5 is neutral and healthy. Nitrate (0.028 mg/L) and phosphate (0.328 mg/L) are both far below their limits, meaning there is no algal bloom threat from nutrient overload at present. Dissolved oxygen is actually slightly elevated — suggesting some aeration or algal activity — which is a silver lining in an otherwise concerning picture.</p>
+    </div>
+  </div>
+
+  <!-- DIAGRAM -->
+  <div class="section-rule"><span class="section-rule-label">Where Does the Contamination Come From?</span></div>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#c8441a"/>
+        </marker>
+      </defs>
+      <!-- Sources -->
+      <!-- Industrial -->
+      <rect x="10" y="20" width="120" height="55" rx="3" fill="#0d1b2a" opacity="0.9"/>
+      <text x="70" y="44" text-anchor="middle" font-size="9" fill="#f5f0e8" font-family="monospace" letter-spacing="1">INDUSTRIAL</text>
+      <text x="70" y="58" text-anchor="middle" font-size="8" fill="#f5f0e8" opacity="0.7" font-family="monospace">BRINE / EFFLUENT</text>
+      <text x="70" y="70" text-anchor="middle" font-size="7.5" fill="#c8441a" font-family="monospace">→ Cl⁻, SO₄²⁻</text>
+
+      <!-- Construction -->
+      <rect x="10" y="88" width="120" height="55" rx="3" fill="#0d1b2a" opacity="0.9"/>
+      <text x="70" y="112" text-anchor="middle" font-size="9" fill="#f5f0e8" font-family="monospace" letter-spacing="1">CONSTRUCTION</text>
+      <text x="70" y="126" text-anchor="middle" font-size="8" fill="#f5f0e8" opacity="0.7" font-family="monospace">RUNOFF / GYPSUM</text>
+      <text x="70" y="138" text-anchor="middle" font-size="7.5" fill="#c8441a" font-family="monospace">→ SO₄²⁻, SS</text>
+
+      <!-- Arrows -->
+      <line x1="130" y1="48" x2="200" y2="80" stroke="#c8441a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="130" y1="115" x2="200" y2="100" stroke="#c8441a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Seawater -->
+      <rect x="10" y="156" width="120" height="35" rx="3" fill="#1a6c8c" opacity="0.7"/>
+      <text x="70" y="175" text-anchor="middle" font-size="9" fill="white" font-family="monospace" letter-spacing="1">TIDAL / SEAWATER</text>
+      <text x="70" y="187" text-anchor="middle" font-size="7.5" fill="white" opacity="0.8" font-family="monospace">INTRUSION</text>
+      <line x1="130" y1="173" x2="200" y2="120" stroke="#1a6c8c" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Pond -->
+      <ellipse cx="290" cy="100" rx="70" ry="80" fill="#5a9ab5" opacity="0.3"/>
+      <ellipse cx="290" cy="100" rx="58" ry="65" fill="#5a9ab5" opacity="0.3"/>
+      <text x="290" y="90" text-anchor="middle" font-size="10" fill="#0d1b2a" font-family="monospace" font-weight="bold">DPS</text>
+      <text x="290" y="106" text-anchor="middle" font-size="10" fill="#0d1b2a" font-family="monospace" font-weight="bold">HOLDING</text>
+      <text x="290" y="122" text-anchor="middle" font-size="10" fill="#0d1b2a" font-family="monospace" font-weight="bold">POND</text>
+      <text x="290" y="140" text-anchor="middle" font-size="8" fill="#c8441a" font-family="monospace">⚠ Contaminated</text>
+
+      <!-- Arrow out -->
+      <line x1="348" y1="80" x2="400" y2="65" stroke="#c8441a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="348" y1="115" x2="400" y2="120" stroke="#c8441a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="348" y1="140" x2="400" y2="155" stroke="#b8922a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Impacts -->
+      <rect x="400" y="44" width="140" height="38" rx="3" fill="#d64e1215" stroke="#d64e12" stroke-width="1"/>
+      <text x="470" y="60" text-anchor="middle" font-size="8.5" fill="#c8441a" font-family="monospace">PIPE CORROSION &</text>
+      <text x="470" y="74" text-anchor="middle" font-size="8.5" fill="#c8441a" font-family="monospace">INFRA DAMAGE</text>
+
+      <rect x="400" y="100" width="140" height="38" rx="3" fill="#d64e1215" stroke="#d64e12" stroke-width="1"/>
+      <text x="470" y="116" text-anchor="middle" font-size="8.5" fill="#c8441a" font-family="monospace">AQUATIC ECOSYSTEM</text>
+      <text x="470" y="130" text-anchor="middle" font-size="8.5" fill="#c8441a" font-family="monospace">DESTRUCTION</text>
+
+      <rect x="400" y="142" width="140" height="38" rx="3" fill="#b8922a15" stroke="#b8922a" stroke-width="1"/>
+      <text x="470" y="158" text-anchor="middle" font-size="8.5" fill="#b8922a" font-family="monospace">UNFIT FOR</text>
+      <text x="470" y="172" text-anchor="middle" font-size="8.5" fill="#b8922a" font-family="monospace">IRRIGATION / USE</text>
+
+      <!-- Bottom label -->
+      <text x="560" y="197" text-anchor="middle" font-size="7" fill="#0d1b2a" opacity="0.35" font-family="monospace" letter-spacing="1">DOWNSTREAM IMPACTS</text>
+    </svg>
+    <div class="diagram-caption">Likely contamination pathways into DPS Holding Pond · Belapur, Navi Mumbai</div>
+  </div>
+
+  <!-- TWO COL ARTICLES -->
+  <div class="two-col">
+    <div>
+      <h2 class="article-h2">Understanding Suspended Solids at 1,446 mg/L</h2>
+      <div class="article-body">
+        <p>Suspended solids (S.S.) refer to particles floating in water — silt, clay, organic matter, algae, and pollutants that haven't dissolved. At 1,446 mg/L the pond water appears murky and turbid.</p>
+        <p>High S.S. blocks sunlight, smothering aquatic plants; provides surfaces for bacteria to colonise; and when solids settle, they smother the pond bed, destroying habitat for bottom-dwelling organisms. It also suggests significant surface runoff or construction activity upstream.</p>
+      </div>
+    </div>
+    <div>
+      <h2 class="article-h2">Dissolved Oxygen at 12.6 mg/L — A Paradox?</h2>
+      <div class="article-body">
+        <p>Safe DO for aquatic life is 4–7 mg/L. The reading of 12.6 mg/L is <em>above</em> the upper threshold — a condition called "supersaturation." This may sound positive, but it can indicate an algal bloom producing excess oxygen through photosynthesis.</p>
+        <p>Algal blooms are often triggered by nutrient enrichment, and at night — when algae respire instead of photosynthesise — DO crashes sharply, suffocating fish. The reading warrants careful monitoring alongside the other salt stress indicators.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="section-rule"><span class="section-rule-label">Recommended Actions</span></div>
+  <ul class="rec-list">
+    <li>
+      <div class="rec-num">1</div>
+      <div class="rec-text">
+        <strong>Source Investigation — Immediate</strong>
+        Trace all inflows to the pond. Chloride at 7,778 mg/L is not a gradual accumulation — it points to a direct discharge event. Identify and seal any industrial or construction outfalls connected to the pond.
+      </div>
+    </li>
+    <li>
+      <div class="rec-num">2</div>
+      <div class="rec-text">
+        <strong>Restrict All Uses of Pond Water</strong>
+        Water must not be used for irrigation, livestock, or any human contact until levels are brought within safe limits. Post warning notices at access points immediately.
+      </div>
+    </li>
+    <li>
+      <div class="rec-num">3</div>
+      <div class="rec-text">
+        <strong>Repeat Sampling in 7 & 14 Days</strong>
+        Test again within one week to assess whether concentrations are rising, plateauing, or beginning to dilute. Track trends across pH, chloride, sulphate, and SS simultaneously.
+      </div>
+    </li>
+    <li>
+      <div class="rec-num">4</div>
+      <div class="rec-text">
+        <strong>Consider Dilution / Partial Draining</strong>
+        If the source is sealed, controlled dilution with clean water or partial draining to a treatment facility can accelerate recovery. Do not drain into natural water bodies without testing.
+      </div>
+    </li>
+    <li>
+      <div class="rec-num">5</div>
+      <div class="rec-text">
+        <strong>Regulatory Escalation if Source Confirmed</strong>
+        If illegal discharge is confirmed, escalate to the Maharashtra Pollution Control Board (MPCB) for enforcement action under the Water (Prevention & Control of Pollution) Act, 1974.
+      </div>
+    </li>
+  </ul>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-text">
+      Lab sample: 20 March 2026<br>
+      Analysis: 30 March 2026<br>
+      Source: NMMC Environment Dept., Navi Mumbai
+    </div>
+    <div class="footer-logo">
+      Water Watch<br>
+      <span style="font-family:'DM Mono',monospace;font-size:7px;opacity:0.4;letter-spacing:0.2em;">RCNN · JOY OF GIVING · NAVI MUMBAI</span>
+    </div>
+    <div class="footer-text footer-right">
+      Published by: Rekha Sankhala<br>
+      President, RCNN<br>
+      Report by: Vikram Sankhala
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

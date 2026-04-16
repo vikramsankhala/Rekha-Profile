@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recyclothon Command Centre — Pilot Pitch · Solinexta × Project Mumbai + Rotary</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f4f0;
+    --dark: #1a1a1a;
+    --green: #1e6b3c;
+    --green-light: #2e8a50;
+    --orange: #d4660a;
+    --muted: #5a6655;
+    --border: #b8c8b5;
+    --card-bg: #e4ede4;
+    --blue: #1a4a6b;
+    --amber: #8a6a00;
+    --teal: #025c4a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: #c8d4c5;
+    color: var(--dark);
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 24px 0 40px;
+  }
+  .page { width: 794px; margin: 0 auto; background: var(--bg); box-shadow: 0 4px 32px rgba(0,0,0,0.18); }
+
+  /* HEADER */
+  .header-top { text-align: center; padding: 14px 0 2px; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+  .masthead { text-align: center; padding: 4px 0 6px; }
+  .masthead h1 { font-family: 'IBM Plex Serif', serif; font-size: 60px; font-weight: 700; letter-spacing: -1.5px; line-height: 1; color: var(--dark); }
+  .masthead h1 em { color: var(--green); font-style: normal; }
+  .masthead-sub { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.22em; color: var(--muted); text-transform: uppercase; margin-top: 3px; }
+  .meta-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 0 28px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.6; }
+  .ticker-bar { background: var(--dark); color: #f0f4f0; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; padding: 5px 0; }
+  .ticker-bar span { color: var(--green-light); margin: 0 10px; }
+
+  /* BYLINE */
+  .byline-section { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 14px 28px; border-bottom: 1px solid var(--border); }
+  .byline-card { background: var(--card-bg); border-radius: 4px; padding: 10px 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .byline-icon { width: 34px; height: 34px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .byline-label { font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.15em; color: var(--green); text-transform: uppercase; margin-bottom: 2px; }
+  .byline-name { font-family: 'IBM Plex Serif', serif; font-size: 13px; font-weight: 700; color: var(--dark); line-height: 1.2; }
+  .byline-role { font-size: 8.5px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+  /* SECTION DIVIDERS */
+  .section-divider { padding: 8px 28px 2px; }
+  .divider-line { display: flex; align-items: center; gap: 10px; }
+  .divider-line hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+  .divider-label { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+
+  /* REPORT TAG */
+  .report-tag-row { padding: 12px 28px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase; }
+
+  /* LEAD */
+  .lead-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 8px 28px 14px; align-items: start; }
+  .lead-headline { font-family: 'IBM Plex Serif', serif; font-size: 30px; font-weight: 700; color: var(--dark); line-height: 1.1; margin-bottom: 10px; }
+  .lead-headline em { color: var(--green); font-style: italic; }
+  .pilot-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--green); color: white; font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; margin-bottom: 10px; }
+  .lead-body { font-size: 10.5px; line-height: 1.65; color: #2a2a2a; }
+  .lead-body strong { font-weight: 600; }
+
+  /* ILLUSTRATION */
+  .pitch-illustration { background: var(--card-bg); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 155px; }
+  .pitch-illustration svg { width: 90%; max-width: 220px; }
+  .pilot-tag { display: inline-block; background: var(--green); color: white; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; margin-top: 6px; }
+
+  /* PROBLEM CARDS */
+  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 8px 28px; }
+  .problem-card { background: var(--card-bg); border-radius: 4px; padding: 12px 14px; border-top: 3px solid var(--border); }
+  .problem-card.critical { border-top-color: #a03030; }
+  .problem-card.warning  { border-top-color: var(--orange); }
+  .problem-card.gap      { border-top-color: var(--amber); }
+  .problem-label { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+  .problem-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .problem-title { font-family: 'IBM Plex Serif', serif; font-size: 13px; font-weight: 700; color: var(--dark); line-height: 1.25; margin-bottom: 5px; }
+  .problem-body { font-size: 8.5px; line-height: 1.62; color: #3a3530; }
+  .problem-tag { display: inline-flex; align-items: center; gap: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 7px; padding: 2px 6px; border-radius: 2px; font-weight: 600; }
+  .problem-tag.critical { background: #fde8e6; color: #a03030; }
+  .problem-tag.warning  { background: #fef3e8; color: var(--orange); }
+  .problem-tag.gap      { background: #fef9e6; color: var(--amber); }
+
+  /* SOLUTION FLOW */
+  .flow-section { padding: 4px 28px 12px; }
+  .flow-intro { font-size: 10.5px; line-height: 1.65; color: #2a2a2a; margin-bottom: 10px; font-family: 'IBM Plex Serif', serif; font-style: italic; border-left: 3px solid var(--green); padding-left: 12px; }
+  .flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .flow-card { background: var(--card-bg); border-radius: 4px; padding: 10px 12px; border-top: 3px solid var(--green); position: relative; }
+  .flow-step { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.15em; color: var(--green); text-transform: uppercase; margin-bottom: 4px; }
+  .flow-title { font-family: 'IBM Plex Serif', serif; font-size: 11px; font-weight: 700; color: var(--dark); margin-bottom: 4px; line-height: 1.25; }
+  .flow-body { font-size: 8px; line-height: 1.55; color: #3a3530; }
+  .flow-arrow { display: flex; align-items: center; justify-content: center; color: var(--green); font-size: 14px; padding-top: 24px; }
+
+  /* DELIVERABLES TABLE */
+  .table-wrap { padding: 4px 28px 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 9px; }
+  th { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--border); background: var(--card-bg); }
+  td { padding: 5px 8px; border-bottom: 1px solid #cdd8ca; vertical-align: middle; }
+  tr:nth-child(even) td { background: rgba(228,237,228,0.5); }
+  .badge { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; font-weight: 600; white-space: nowrap; }
+  .badge.done  { background: #e2f0e8; color: var(--green); }
+  .badge.new   { background: #e8f0f9; color: var(--blue); }
+  .badge.core  { background: #fef3e8; color: var(--orange); }
+  .badge.bonus { background: #fef9e6; color: var(--amber); }
+
+  /* SCOPE EXCHANGE */
+  .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 6px 28px 12px; }
+  .scope-card { background: var(--card-bg); border-radius: 4px; padding: 14px 16px; }
+  .scope-card.dark { background: #1e2e1e; }
+  .scope-header { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; color: var(--green); }
+  .scope-card.dark .scope-header { color: #7ec89a; }
+  .scope-org { font-family: 'IBM Plex Serif', serif; font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.2; }
+  .scope-card.dark .scope-org { color: #e8f4e8; }
+  .scope-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 5px; font-size: 8.5px; line-height: 1.5; color: #3a3530; }
+  .scope-card.dark .scope-item { color: #9ab89a; }
+  .scope-bullet { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .scope-card.dark .scope-bullet { color: #7ec89a; }
+
+  /* ROADMAP */
+  .roadmap-section { padding: 4px 28px 12px; }
+  .roadmap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .roadmap-card { background: var(--card-bg); border-radius: 4px; padding: 12px 14px; }
+  .roadmap-month { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 3px; }
+  .roadmap-phase { font-family: 'IBM Plex Serif', serif; font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .roadmap-item { font-size: 8px; line-height: 1.55; color: #3a3530; margin-bottom: 3px; padding-left: 8px; position: relative; }
+  .roadmap-item::before { content: '·'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+  /* STAKEHOLDERS */
+  .stake-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 6px 28px 12px; }
+  .stake-card { background: var(--card-bg); border-radius: 4px; padding: 12px 14px; border-top: 3px solid var(--green); }
+  .stake-who { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; }
+  .stake-name { font-family: 'IBM Plex Serif', serif; font-size: 12px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.25; }
+  .stake-item { font-size: 8px; line-height: 1.55; color: #3a3530; margin-bottom: 3px; padding-left: 10px; position: relative; }
+  .stake-item::before { content: '→'; position: absolute; left: 0; color: var(--green); font-size: 7px; }
+
+  /* ECOSYSTEM */
+  .ecosystem-section { padding: 4px 28px 12px; }
+  .ecosystem-box { background: var(--card-bg); border-radius: 6px; padding: 16px; }
+  .eco-intro { font-size: 9px; line-height: 1.6; color: #3a3530; margin-bottom: 12px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .eco-flow { display: flex; align-items: center; gap: 0; justify-content: space-between; }
+  .eco-node { background: white; border: 1.5px solid var(--border); border-radius: 4px; padding: 10px 12px; text-align: center; flex: 1; }
+  .eco-node.center { background: rgba(30,107,60,0.08); border-color: var(--green); border-width: 2px; }
+  .eco-node-label { font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  .eco-node-name { font-family: 'IBM Plex Serif', serif; font-size: 11px; font-weight: 700; color: var(--dark); line-height: 1.2; }
+  .eco-node.center .eco-node-name { color: var(--green); }
+  .eco-node-desc { font-size: 7.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+  .eco-arrow { color: var(--green); font-size: 18px; padding: 0 6px; flex-shrink: 0; }
+  .eco-caption { font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; text-align: center; margin-top: 10px; }
+
+  /* NEXT STEPS */
+  .next-section { padding: 4px 28px 10px; }
+  .next-row { display: flex; gap: 14px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .next-row:last-child { border-bottom: none; }
+  .next-number { font-family: 'IBM Plex Serif', serif; font-size: 28px; font-weight: 700; color: var(--green); line-height: 1; flex-shrink: 0; width: 28px; }
+  .next-week { font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; color: var(--green); text-transform: uppercase; margin-bottom: 3px; }
+  .next-title { font-family: 'IBM Plex Sans', sans-serif; font-size: 10.5px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .next-body { font-size: 9px; line-height: 1.6; color: #3a3530; }
+
+  /* WHY NOW QUOTE */
+  .quote-block { margin: 6px 28px 10px; padding: 14px 20px; border-left: 4px solid var(--green); background: var(--card-bg); border-radius: 0 4px 4px 0; }
+  .quote-text { font-family: 'IBM Plex Serif', serif; font-size: 12px; font-style: italic; line-height: 1.55; color: var(--dark); margin-bottom: 8px; }
+  .quote-attr { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* KPI STATS ROW */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 6px 28px 12px; }
+  .kpi-card { background: var(--card-bg); border-radius: 4px; padding: 12px 14px; text-align: center; border-top: 3px solid var(--green); }
+  .kpi-value { font-family: 'IBM Plex Serif', serif; font-size: 28px; font-weight: 700; color: var(--green); line-height: 1; }
+  .kpi-label { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* FOOTER */
+  .footer { background: var(--dark); color: #90a090; padding: 12px 28px; display: flex; justify-content: space-between; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.6; }
+  .footer-logo { font-family: 'IBM Plex Serif', serif; font-size: 14px; font-weight: 700; color: white; letter-spacing: 0; text-transform: none; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="header-top">Solinexta &nbsp;·&nbsp; Project Mumbai &nbsp;·&nbsp; Rotary &nbsp;·&nbsp; Pilot Pitch 2025</div>
+
+  <div class="masthead">
+    <h1><em>Recyclothon</em> Command Centre</h1>
+    <div class="masthead-sub">A 6-Month Pilot to Make Mumbai's Plastic Recovery Visible, Measurable &amp; Sponsor-Ready</div>
+  </div>
+
+  <div class="meta-row">
+    <div>Pilot Pitch<br>2025 Edition<br>Mumbai Region</div>
+    <div style="text-align:center;font-size:6.5px;color:var(--muted);">Solinexta × Project Mumbai + Rotary &nbsp;·&nbsp; Plastic Recovery Traceability Platform</div>
+    <div style="text-align:right;">Sector<br>Plastic Waste<br>CSR &amp; EPR Compliance</div>
+  </div>
+
+  <div class="ticker-bar">
+    Solinexta <span>◆</span> Project Mumbai <span>◆</span> Rotary <span>◆</span> Ward-Level Recovery Data <span>◆</span> CSR Reporting <span>◆</span> EPR Compliance
+  </div>
+
+  <!-- BYLINE -->
+  <div class="byline-section">
+    <div class="byline-card">
+      <div class="byline-icon">♻</div>
+      <div>
+        <div class="byline-label">Presented By</div>
+        <div class="byline-name">Solinexta</div>
+        <div class="byline-role">solinexta.com &nbsp;·&nbsp; Impact Data Platform for Plastic Recovery &amp; CSR Traceability</div>
+        <div style="margin-top:6px;">
+          <div class="byline-label">Platform Offer</div>
+          <div class="byline-name" style="font-size:11px;">Full build at no cost to Project Mumbai</div>
+          <div class="byline-role">6 months hosting &amp; support included &nbsp;·&nbsp; 2025 Pilot</div>
+        </div>
+      </div>
+    </div>
+    <div class="byline-card">
+      <div style="flex:1;">
+        <div class="byline-label">Pilot Partners</div>
+        <div class="byline-name">Project Mumbai + Rotary</div>
+        <div class="byline-role">Community-level plastic recovery across Mumbai wards &nbsp;·&nbsp; Multi-stakeholder coordination across housing societies, colleges &amp; Rotary clubs</div>
+        <div style="margin-top:6px;">
+          <div class="byline-label">Target Scope</div>
+          <div class="byline-role">2–3 Pilot Wards &nbsp;·&nbsp; 1 Recycler Partner &nbsp;·&nbsp; 1 Product-Maker &nbsp;·&nbsp; Key Rotary Clubs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD -->
+  <div class="report-tag-row">Pilot Pitch &nbsp;·&nbsp; Digital Traceability &nbsp;·&nbsp; Recyclothon Recovery Data Platform &nbsp;·&nbsp; 2025</div>
+
+  <div class="lead-section">
+    <div>
+      <div class="lead-headline">
+        Tens of Thousands of KGs Recovered — <em>Without a Digital Proof Trail</em>
+      </div>
+      <div class="pilot-pill">● 6-Month Pilot · No Cost to Project Mumbai</div>
+      <p class="lead-body">
+        Recyclothon has recovered tonnes of plastic across Mumbai wards through the hard work of societies, colleges, and Rotary clubs. But every kilogram collected is invisible to the sponsors who fund it. Reporting is done on WhatsApp and Excel. Corporate CSR teams can't show their boards what kg they funded, which wards benefited, or how many park benches were installed. There is no live map, no ward-wise summary, and no auditable trail from collection to end-product. <strong>Solinexta proposes to build, host, and operate the Recyclothon Command Centre</strong> — a digital layer that turns scattered collection data into a live dashboard, a full traceability chain, and auto-generated sponsor-grade CSR reports — entirely at no cost to Project Mumbai for the 6-month pilot.
+      </p>
+    </div>
+    <div class="pitch-illustration">
+      <svg viewBox="0 0 240 170" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background grid suggestion -->
+        <rect x="10" y="10" width="220" height="145" rx="6" fill="#d8e8d8" opacity="0.4"/>
+        <!-- Dashboard mock -->
+        <rect x="20" y="18" width="200" height="90" rx="4" fill="white" opacity="0.85"/>
+        <!-- Bar chart inside -->
+        <rect x="32" y="75" width="14" height="25" fill="#1e6b3c" rx="2"/>
+        <rect x="52" y="60" width="14" height="40" fill="#1e6b3c" rx="2" opacity="0.8"/>
+        <rect x="72" y="50" width="14" height="50" fill="#2e8a50" rx="2"/>
+        <rect x="92" y="55" width="14" height="45" fill="#1e6b3c" rx="2" opacity="0.9"/>
+        <rect x="112" y="42" width="14" height="58" fill="#2e8a50" rx="2"/>
+        <rect x="132" y="48" width="14" height="52" fill="#1e6b3c" rx="2" opacity="0.85"/>
+        <rect x="152" y="36" width="14" height="64" fill="#2e8a50" rx="2"/>
+        <rect x="172" y="30" width="14" height="70" fill="#1e6b3c" rx="2" opacity="0.9"/>
+        <!-- Axis line -->
+        <line x1="28" y1="100" x2="194" y2="100" stroke="#b8c8b5" stroke-width="0.8"/>
+        <!-- Title bar -->
+        <rect x="20" y="18" width="200" height="22" rx="4" fill="#1e6b3c"/>
+        <rect x="20" y="32" width="200" height="8" fill="#1e6b3c"/>
+        <text x="34" y="32" font-family="monospace" font-size="7" fill="white" font-weight="bold" letter-spacing="0.5">WARD-WISE COLLECTION DASHBOARD</text>
+        <!-- KG stat -->
+        <rect x="20" y="112" width="60" height="36" rx="4" fill="white" opacity="0.85"/>
+        <text x="50" y="128" text-anchor="middle" font-family="serif" font-size="14" fill="#1e6b3c" font-weight="bold">34.2t</text>
+        <text x="50" y="140" text-anchor="middle" font-family="monospace" font-size="5" fill="#5a6655" letter-spacing="0.5">PLASTIC KG</text>
+        <!-- CSR report icon -->
+        <rect x="88" y="112" width="60" height="36" rx="4" fill="white" opacity="0.85"/>
+        <text x="118" y="128" text-anchor="middle" font-family="serif" font-size="14" fill="#1e6b3c" font-weight="bold">12</text>
+        <text x="118" y="140" text-anchor="middle" font-family="monospace" font-size="5" fill="#5a6655" letter-spacing="0.5">BENCHES</text>
+        <!-- CO2 saved -->
+        <rect x="156" y="112" width="60" height="36" rx="4" fill="white" opacity="0.85"/>
+        <text x="186" y="128" text-anchor="middle" font-family="serif" font-size="11" fill="#1e6b3c" font-weight="bold">42t CO₂</text>
+        <text x="186" y="140" text-anchor="middle" font-family="monospace" font-size="5" fill="#5a6655" letter-spacing="0.5">SAVED</text>
+      </svg>
+      <div class="pilot-tag">♻ Live Dashboard · Auto CSR Reports</div>
+    </div>
+  </div>
+
+  <!-- KPI STATS -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-value">10k+</div>
+      <div class="kpi-label">KG Recovered<br>Without Digital Trail</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">₹0</div>
+      <div class="kpi-label">Cost to<br>Project Mumbai</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">6mo</div>
+      <div class="kpi-label">Full Platform<br>Hosting &amp; Support</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">3</div>
+      <div class="kpi-label">Polished CSR<br>Case Studies</div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">The Problem Today — Three Gaps Blocking Impact</div><hr/></div></div>
+
+  <div class="problem-grid">
+    <div class="problem-card critical">
+      <div class="problem-label">Gap 01</div>
+      <span class="problem-icon">📋</span>
+      <div class="problem-title">Reporting is Manual</div>
+      <div class="problem-body">Ward coordinators use WhatsApp and Excel. Consolidating data for sponsors takes days — and the numbers are hard to verify. There is no single source of truth for tonnage collected or where it went.</div>
+      <div class="problem-tag critical">✕ No Digital Record</div>
+    </div>
+    <div class="problem-card warning">
+      <div class="problem-label">Gap 02</div>
+      <span class="problem-icon">🏢</span>
+      <div class="problem-title">Sponsors Lack Proof</div>
+      <div class="problem-body">Corporate CSR teams fund Recyclothon but can't easily show their boards what kg they funded, which wards benefited, or how many benches were installed. BRSR and EPR filings demand this data.</div>
+      <div class="problem-tag warning">⚑ CSR Reporting Gap</div>
+    </div>
+    <div class="problem-card gap">
+      <div class="problem-label">Gap 03</div>
+      <span class="problem-icon">🗺</span>
+      <div class="problem-title">Impact is Invisible</div>
+      <div class="problem-body">Tonnes of plastic recovered, benches placed in gardens — but there's no live map, no ward-wise summary, no auditable trail from collection to end-product. The community story exists; proof does not.</div>
+      <div class="problem-tag gap">⚑ No Traceability</div>
+    </div>
+  </div>
+
+  <!-- SOLUTION FLOW -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">The Recyclothon Command Centre — How It Works</div><hr/></div></div>
+
+  <div class="flow-section">
+    <div class="flow-intro">
+      Solinexta builds a digital layer that turns scattered collection data into a live dashboard, a traceability chain, and auto-generated sponsor reports — connecting every kg from ward collection to recycler to end-product.
+    </div>
+    <div class="flow-grid">
+      <div class="flow-card">
+        <div class="flow-step">Step 01</div>
+        <div class="flow-title">Ward Collection</div>
+        <div class="flow-body">Societies, colleges, and Rotary clubs log kg by plastic type via a simple web form or WhatsApp CSV upload. No new hardware required.</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-step">Step 02</div>
+        <div class="flow-title">Recycler Flow</div>
+        <div class="flow-body">Platform tracks material from pickup to recycler to product. Processed vs. unprocessed tonnage. Reject handling and material quality flags.</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-step">Step 03</div>
+        <div class="flow-title">Live Dashboard</div>
+        <div class="flow-body">Ward-wise map, partner views, real-time collection totals. Sponsor-specific views go live in months 3–4. Photo upload support for field teams.</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-step">Step 04</div>
+        <div class="flow-title">Sponsor Reports</div>
+        <div class="flow-body">Auto-generated branded PDF for each corporate sponsor: kg funded, benches installed, CO₂ saved. Ready for annual reports and BRSR filings.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELIVERABLES TABLE -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">What We Will Build — Full Deliverables Breakdown</div><hr/></div></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature Module</th>
+          <th>What It Delivers</th>
+          <th>Primary User</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Ward &amp; Partner Dashboard</strong></td><td>Collection totals by ward, week, and plastic type · Live map of collection events</td><td>Rotary coordinators, Project Mumbai</td><td><span class="badge core">Core</span></td></tr>
+        <tr><td><strong>Partner View</strong></td><td>Per Rotary club, college, and corporate sponsor breakdown in real time</td><td>All stakeholders</td><td><span class="badge core">Core</span></td></tr>
+        <tr><td><strong>Recycler Flow Visibility</strong></td><td>Track plastic from collection point to recycler · Reject handling and material quality flags</td><td>Recycler partners</td><td><span class="badge core">Core</span></td></tr>
+        <tr><td><strong>End-Product Tracker</strong></td><td>Link recycled kg to benches and dustbins installed · Ward and sponsor-wise product map</td><td>Project Mumbai, CSR sponsors</td><td><span class="badge new">New</span></td></tr>
+        <tr><td><strong>Auto-Generated CSR Reports</strong></td><td>Branded PDF per corporate sponsor: kg funded → products, locations, CO₂ saved</td><td>Corporate CSR teams</td><td><span class="badge new">New</span></td></tr>
+        <tr><td><strong>CSV/WhatsApp Upload Interface</strong></td><td>Low-friction data entry via familiar tools for ward coordinators in the field</td><td>Ward coordinators</td><td><span class="badge core">Core</span></td></tr>
+        <tr><td><strong>BRSR / EPR Compliance Narrative</strong></td><td>Ready-to-use data narrative for brand compliance filings and ESG audits</td><td>Corporate sponsors</td><td><span class="badge bonus">Bonus</span></td></tr>
+        <tr><td><strong>Co-Branded Case Studies</strong></td><td>2–3 polished case studies published with Project Mumbai co-branding rights</td><td>Project Mumbai, Solinexta</td><td><span class="badge bonus">Bonus</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PILOT SCOPE EXCHANGE -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Pilot Scope — 6 Months, Low Friction · The Exchange</div><hr/></div></div>
+
+  <div class="scope-grid">
+    <div class="scope-card">
+      <div class="scope-header">Solinexta Provides</div>
+      <div class="scope-org">At No Cost to<br>Project Mumbai</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> Full platform build at no cost for the 6-month pilot period</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> 6 months of hosting &amp; ongoing technical support</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> 2–3 polished, co-branded CSR case studies ready to publish</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> Sponsor report templates adapted to each corporate partner's brand</div>
+    </div>
+    <div class="scope-card dark">
+      <div class="scope-header">Project Mumbai Gives</div>
+      <div class="scope-org" style="color:#e8f4e8;">Access, Introductions<br>&amp; Co-branding</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> Data access and coordinator time for pilot ward onboarding</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> Pilot ward introductions (2–3 wards or a cluster of societies and colleges)</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> Case study co-branding rights for published materials</div>
+      <div class="scope-item"><span class="scope-bullet">→</span> Sponsor introductions to corporate CSR teams for scale-up phase</div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">6-Month Roadmap — From Co-Design to Expansion</div><hr/></div></div>
+
+  <div class="roadmap-section">
+    <div class="roadmap-grid">
+      <div class="roadmap-card">
+        <div class="roadmap-month">Month 1</div>
+        <div class="roadmap-phase">Co-Design</div>
+        <div class="roadmap-item">Data template workshop with Project Mumbai + Rotary</div>
+        <div class="roadmap-item">Select 2–3 pilot wards and partner organisations</div>
+        <div class="roadmap-item">Map existing data sources — WhatsApp, Excel, receipts</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-month">Month 2</div>
+        <div class="roadmap-phase">MVP Launch</div>
+        <div class="roadmap-item">Basic web dashboard live with manual data entry</div>
+        <div class="roadmap-item">CSV upload interface for ward coordinators</div>
+        <div class="roadmap-item">Recycler data entry configured and tested</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-month">Months 3–4</div>
+        <div class="roadmap-phase">Data Flows</div>
+        <div class="roadmap-item">Standardise inputs from recyclers and product makers</div>
+        <div class="roadmap-item">Sponsor-specific views go live with branding</div>
+        <div class="roadmap-item">First auto-generated CSR reports produced and reviewed</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-month">Months 5–6</div>
+        <div class="roadmap-phase">Validate &amp; Expand</div>
+        <div class="roadmap-item">Validate impact numbers with Project Mumbai team</div>
+        <div class="roadmap-item">2–3 polished co-branded CSR case studies published</div>
+        <div class="roadmap-item">Expansion proposal to additional wards and sponsors</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY NOW -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Why Now</div><hr/></div></div>
+
+  <div class="quote-block">
+    <div class="quote-text">Solinexta turns Recyclothon's community work into auditable, sponsor-grade impact data — at no cost to Project Mumbai. EPR deadlines are tightening. Brand compliance timelines are shortening. Your impact data can feed directly into their filings.</div>
+    <div class="quote-attr">Solinexta Pilot Pitch &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Mumbai Region</div>
+  </div>
+
+  <!-- STAKEHOLDER GAINS -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">What Each Stakeholder Gains</div><hr/></div></div>
+
+  <div class="stake-grid">
+    <div class="stake-card">
+      <div class="stake-who">Community Partners</div>
+      <div class="stake-name">Project Mumbai + Rotary</div>
+      <div class="stake-item">Live ward-level dashboard at no cost</div>
+      <div class="stake-item">Instant sponsor impact reports, ready to share</div>
+      <div class="stake-item">Credibility for future grants and partnerships</div>
+      <div class="stake-item">Reduced reporting workload for volunteers</div>
+    </div>
+    <div class="stake-card">
+      <div class="stake-who">Funding Partners</div>
+      <div class="stake-name">Corporate CSR Sponsors</div>
+      <div class="stake-item">Branded PDF report for annual filings</div>
+      <div class="stake-item">Verifiable kg funded → products installed</div>
+      <div class="stake-item">Ready-to-use BRSR and EPR compliance narrative</div>
+      <div class="stake-item">Visible community impact story for internal comms</div>
+    </div>
+    <div class="stake-card">
+      <div class="stake-who">Supply Chain Partners</div>
+      <div class="stake-name">Recycler &amp; Product Makers</div>
+      <div class="stake-item">Formal data partnerships with documented flows</div>
+      <div class="stake-item">Appear by name in sponsor reports and case studies</div>
+      <div class="stake-item">Structured records for compliance and audits</div>
+      <div class="stake-item">Pathway to EPR-linked brand contracts</div>
+    </div>
+  </div>
+
+  <!-- ECOSYSTEM -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Bigger Picture — Recyclothon as One of Three Connected Pilots</div><hr/></div></div>
+
+  <div class="ecosystem-section">
+    <div class="ecosystem-box">
+      <div class="eco-intro">
+        One kg of plastic — from Mumbai ward collection → through Dimension's supply chain → into a brand's BRSR report. No other platform closes this loop.
+      </div>
+      <div class="eco-flow">
+        <div class="eco-node">
+          <div class="eco-node-label">Pilot 1</div>
+          <div class="eco-node-name">FMCG Brand</div>
+          <div class="eco-node-desc">Tracks recycled content in secondary packaging · cites Recyclothon tonnage in BRSR filing</div>
+        </div>
+        <div class="eco-arrow">⇄</div>
+        <div class="eco-node center">
+          <div class="eco-node-label">Pilot 2 · This Pitch</div>
+          <div class="eco-node-name">Recyclothon<br>Command Centre</div>
+          <div class="eco-node-desc">Community-level recovery data feeds both the FMCG brand's compliance story and Dimension's traceability reports</div>
+        </div>
+        <div class="eco-arrow">⇄</div>
+        <div class="eco-node">
+          <div class="eco-node-label">Pilot 3</div>
+          <div class="eco-node-name">Dimension<br>Polyproducts</div>
+          <div class="eco-node-desc">Recycled-ready packaging supplier proves batch-level traceability to FMCG clients, citing Recyclothon as a source</div>
+        </div>
+      </div>
+      <div class="eco-caption">Interconnected Pilots · Plastic Traceability Chain · Mumbai 2025</div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Next Steps — Getting to a Signed Pilot Agreement in 4 Weeks</div><hr/></div></div>
+
+  <div class="next-section">
+    <div class="next-row">
+      <div class="next-number">1</div>
+      <div>
+        <div class="next-week">Week 1</div>
+        <div class="next-title">30-Minute Discovery Call</div>
+        <div class="next-body">We map your current reporting workflow and confirm pilot wards. This is a focused, practical call — not a pitch. We want to understand your data before we propose architecture.</div>
+      </div>
+    </div>
+    <div class="next-row">
+      <div class="next-number">2</div>
+      <div>
+        <div class="next-week">Week 2</div>
+        <div class="next-title">1-Page Pilot Note &amp; Sample CSR Report</div>
+        <div class="next-body">We share a one-page pilot note and a sample sponsor CSR report built around Recyclothon's actual data — so you can see exactly what your partners will receive before any agreement is signed.</div>
+      </div>
+    </div>
+    <div class="next-row">
+      <div class="next-number">3</div>
+      <div>
+        <div class="next-week">Week 3</div>
+        <div class="next-title">Pilot MOU Circulated</div>
+        <div class="next-body">Plain language, one page, no legal overhead. The MOU defines data access, co-branding rights, and the 6-month scope. It is designed to be signed without a lawyer.</div>
+      </div>
+    </div>
+    <div class="next-row">
+      <div class="next-number">4</div>
+      <div>
+        <div class="next-week">Week 4</div>
+        <div class="next-title">Signed Agreement — Co-Design Workshop Scheduled</div>
+        <div class="next-body">With a signed agreement in hand, we schedule the Month 1 co-design workshop. This is when we map your data sources, select pilot wards, and begin building the Command Centre together.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Summary — Platform Value by Stakeholder Group</div><hr/></div></div>
+
+  <div class="table-wrap" style="padding-bottom:16px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Platform Feature</th>
+          <th>Value Delivered</th>
+          <th>Compliance Angle</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Ward Collection Logging</strong></td><td>Single source of truth replacing WhatsApp &amp; Excel</td><td>Auditable data entry trail</td><td><span class="badge core">Core</span></td></tr>
+        <tr><td><strong>Live Recovery Dashboard</strong></td><td>Real-time ward totals, map view, partner breakdown</td><td>Sponsor verification</td><td><span class="badge core">Core</span></td></tr>
+        <tr><td><strong>Recycler Traceability</strong></td><td>Full flow from collection → recycler → product</td><td>EPR chain evidence</td><td><span class="badge core">Core</span></td></tr>
+        <tr><td><strong>End-Product Linking</strong></td><td>Connects kg to specific benches/dustbins placed</td><td>BRSR product attribution</td><td><span class="badge new">New</span></td></tr>
+        <tr><td><strong>Auto CSR Reports</strong></td><td>Branded PDF per sponsor, ready for board decks</td><td>BRSR / ESG reporting</td><td><span class="badge new">New</span></td></tr>
+        <tr><td><strong>EPR Compliance Narrative</strong></td><td>Data formatted for brand filing requirements</td><td>EPR extended producer deadlines</td><td><span class="badge bonus">Bonus</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div style="color:#5a7a5a;font-size:6.5px;margin-bottom:2px;">Pilot Period</div>
+      6-Month Pilot · 2025<br>
+      Platform: Solinexta<br>
+      Full Build at No Cost
+    </div>
+    <div style="text-align:center;">
+      <div class="footer-logo">Recyclothon Command Centre</div>
+      <div style="margin-top:3px;">Solinexta × Project Mumbai × Rotary</div>
+      <div style="margin-top:2px;color:#5a7a5a;">Pilot Pitch &nbsp;·&nbsp; 2025 Edition</div>
+    </div>
+    <div style="text-align:right;">
+      Contact: solinexta.com<br>
+      Schedule a 30-min<br>
+      Discovery Call Today
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

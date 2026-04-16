@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Watch — Issue 002 — Ganesh Festival Water Quality</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --dark: #1a1a1a;
+    --red: #c0392b;
+    --orange: #e07b39;
+    --muted: #6b6355;
+    --border: #c8bfaa;
+    --card-bg: #ede8dc;
+    --green: #2e7d52;
+    --amber: #b8860b;
+    --blue: #1a4a6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: #d0c9bc;
+    color: var(--dark);
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 24px 0 40px;
+  }
+  .page { width: 794px; margin: 0 auto; background: var(--bg); box-shadow: 0 4px 32px rgba(0,0,0,0.18); }
+
+  .header-top { text-align: center; padding: 14px 0 2px; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+  .masthead { text-align: center; padding: 4px 0 6px; }
+  .masthead h1 { font-family: 'IBM Plex Serif', serif; font-size: 64px; font-weight: 700; letter-spacing: -1px; line-height: 1; color: var(--dark); }
+  .masthead-sub { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.22em; color: var(--muted); text-transform: uppercase; margin-top: 3px; }
+  .meta-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 0 28px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.6; }
+  .ticker-bar { background: var(--dark); color: #f5f0e8; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; padding: 5px 0; }
+  .ticker-bar span { color: var(--orange); margin: 0 10px; }
+
+  .byline-section { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 14px 28px; border-bottom: 1px solid var(--border); }
+  .byline-card { background: var(--card-bg); border-radius: 4px; padding: 10px 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .byline-icon { width: 34px; height: 34px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 17px; }
+  .byline-label { font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.15em; color: var(--orange); text-transform: uppercase; margin-bottom: 2px; }
+  .byline-name { font-family: 'IBM Plex Serif', serif; font-size: 13px; font-weight: 700; color: var(--dark); line-height: 1.2; }
+  .byline-role { font-size: 8.5px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+  .report-tag-row { padding: 12px 28px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.18em; color: var(--orange); text-transform: uppercase; }
+  .lead-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 8px 28px 14px; align-items: start; }
+  .lead-headline { font-family: 'IBM Plex Serif', serif; font-size: 30px; font-weight: 700; color: var(--dark); line-height: 1.1; margin-bottom: 10px; }
+  .lead-headline em { color: var(--orange); font-style: italic; }
+  .exceeds-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--red); color: white; font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; margin-bottom: 10px; }
+  .lead-body { font-size: 10.5px; line-height: 1.65; color: #2a2a2a; }
+  .lead-body strong { font-weight: 600; }
+  .festival-illustration { background: var(--card-bg); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 155px; }
+  .festival-illustration svg { width: 90%; max-width: 220px; }
+  .contam-tag { display: inline-block; background: var(--red); color: white; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; margin-top: 6px; }
+
+  .section-divider { padding: 8px 28px 2px; }
+  .divider-line { display: flex; align-items: center; gap: 10px; }
+  .divider-line hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+  .divider-label { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+
+  .param-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 8px 28px; }
+  .param-card { background: var(--card-bg); border-radius: 4px; padding: 10px 12px; border-top: 3px solid var(--border); }
+  .param-card.critical { border-top-color: var(--red); }
+  .param-card.warning  { border-top-color: var(--orange); }
+  .param-card.ok       { border-top-color: var(--green); }
+  .param-card.monitor  { border-top-color: var(--amber); }
+  .param-label { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 2px; }
+  .param-value { font-family: 'IBM Plex Serif', serif; font-size: 26px; font-weight: 700; line-height: 1; }
+  .param-value.critical { color: var(--red); }
+  .param-value.warning  { color: var(--orange); }
+  .param-value.ok       { color: var(--green); }
+  .param-value.monitor  { color: var(--amber); }
+  .param-unit { font-size: 10px; font-weight: 400; color: var(--muted); margin-left: 2px; }
+  .param-limit { font-size: 8px; color: var(--muted); margin-top: 2px; }
+  .param-status { display: inline-flex; align-items: center; gap: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 5px; padding: 2px 6px; border-radius: 2px; font-weight: 600; }
+  .param-status.critical   { background: #fde8e6; color: var(--red); }
+  .param-status.warning    { background: #fef3e8; color: #b85e00; }
+  .param-status.ok         { background: #e8f4ed; color: var(--green); }
+  .param-status.monitor    { background: #fef9e6; color: var(--amber); }
+
+  .chart-section { padding: 2px 28px 8px; }
+  .chart-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .chart-label { font-family: 'IBM Plex Mono', monospace; font-size: 7.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); width: 100px; text-align: right; flex-shrink: 0; line-height: 1.4; }
+  .chart-bar-wrap { flex: 1; height: 15px; background: #e0d8c8; border-radius: 2px; position: relative; overflow: hidden; }
+  .chart-bar { height: 100%; border-radius: 2px; }
+  .chart-bar.critical { background: var(--red); }
+  .chart-bar.warning  { background: var(--orange); }
+  .chart-bar.monitor  { background: var(--amber); }
+  .chart-limit-line { position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.35); }
+  .chart-value { font-family: 'IBM Plex Mono', monospace; font-size: 8px; font-weight: 600; color: var(--dark); width: 75px; flex-shrink: 0; line-height: 1.4; }
+  .chart-note { font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; text-align: center; padding: 3px 0 2px; }
+
+  .table-wrap { padding: 4px 28px 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 9px; }
+  th { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--border); background: var(--card-bg); }
+  td { padding: 5px 8px; border-bottom: 1px solid #ddd6c5; vertical-align: middle; }
+  tr:nth-child(even) td { background: rgba(237,232,220,0.5); }
+  .badge { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; font-weight: 600; white-space: nowrap; }
+  .badge.pass       { background: #e8f4ed; color: var(--green); }
+  .badge.critical   { background: #fde8e6; color: var(--red); }
+  .badge.monitor    { background: #fef9e6; color: var(--amber); }
+  .badge.elevated   { background: #fef3e8; color: #b85e00; }
+  .badge.borderline { background: #e8f0f9; color: var(--blue); }
+
+  .explainer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 4px 28px 10px; }
+  .explainer-card { background: var(--card-bg); border-radius: 4px; padding: 12px 14px; }
+  .explainer-card.dark { background: #232323; }
+  .explainer-icon { font-size: 20px; margin-bottom: 5px; }
+  .explainer-title { font-family: 'IBM Plex Serif', serif; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: var(--dark); line-height: 1.25; }
+  .explainer-card.dark .explainer-title { color: #f0ebe0; }
+  .explainer-body { font-size: 8.5px; line-height: 1.62; color: #3a3530; }
+  .explainer-card.dark .explainer-body { color: #a8a098; }
+
+  .quote-block { margin: 6px 28px 10px; padding: 14px 20px; border-left: 4px solid var(--orange); background: var(--card-bg); border-radius: 0 4px 4px 0; }
+  .quote-text { font-family: 'IBM Plex Serif', serif; font-size: 12px; font-style: italic; line-height: 1.55; color: var(--dark); margin-bottom: 8px; }
+  .quote-attr { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  .pathway-section { padding: 4px 28px 10px; }
+  .pathway-diagram { background: var(--card-bg); border-radius: 6px; padding: 14px 16px; }
+  .pathway-inner { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .pathway-col { display: flex; flex-direction: column; gap: 7px; }
+  .pbox { background: white; border: 1px solid var(--border); border-radius: 3px; padding: 5px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--dark); text-align: center; line-height: 1.4; min-width: 110px; }
+  .pbox small { font-size: 6px; color: var(--muted); display: block; }
+  .pathway-center { background: rgba(192,57,43,0.1); border: 2px solid var(--red); border-radius: 50%; width: 96px; height: 96px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8px; }
+  .pathway-center-label { font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); font-weight: 600; line-height: 1.4; }
+  .pibox { background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.3); border-radius: 3px; padding: 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--red); text-align: center; line-height: 1.4; min-width: 110px; }
+  .pathway-caption { font-family: 'IBM Plex Mono', monospace; font-size: 6.5px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; text-align: center; margin-top: 8px; }
+
+  .actions-section { padding: 4px 28px 10px; }
+  .action-row { display: flex; gap: 14px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .action-row:last-child { border-bottom: none; }
+  .action-number { font-family: 'IBM Plex Serif', serif; font-size: 28px; font-weight: 700; color: var(--orange); line-height: 1; flex-shrink: 0; width: 28px; }
+  .action-title { font-family: 'IBM Plex Sans', sans-serif; font-size: 10.5px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .action-body { font-size: 9px; line-height: 1.6; color: #3a3530; }
+
+  .footer { background: var(--dark); color: #a0998c; padding: 12px 28px; display: flex; justify-content: space-between; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.6; }
+  .footer-logo { font-family: 'IBM Plex Serif', serif; font-size: 14px; font-weight: 700; color: white; letter-spacing: 0; text-transform: none; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header-top">Rotary Club of Navi Mumbai Nerul &nbsp;·&nbsp; Joy of Giving</div>
+
+  <div class="masthead">
+    <h1>Water Watch</h1>
+    <div class="masthead-sub">Ganeshotsav Special Edition &nbsp;·&nbsp; Community Water Safety Alert</div>
+  </div>
+
+  <div class="meta-row">
+    <div>Issue No. 002<br>16 April 2026<br>Maharashtra Region</div>
+    <div style="text-align:center;font-size:6.5px;color:var(--muted);">Ganesh Festival Visarjan &nbsp;·&nbsp; Multi-District Water Quality Bulletin</div>
+    <div style="text-align:right;">Data Source<br>MPCB – Maharashtra<br>Pollution Control Board</div>
+  </div>
+
+  <div class="ticker-bar">
+    Rotary Club Navi Mumbai Nerul <span>◆</span> Joy of Giving Initiative <span>◆</span> Community Water Safety Alert
+  </div>
+
+  <!-- BYLINE -->
+  <div class="byline-section">
+    <div class="byline-card">
+      <div class="byline-icon">🔆</div>
+      <div>
+        <div class="byline-label">Published By</div>
+        <div class="byline-name">Rekha Sankhala</div>
+        <div class="byline-role">President · Rotary Club of Navi Mumbai Nerul (RCNN) · Joy of Giving</div>
+        <div style="margin-top:6px;">
+          <div class="byline-label">Newsletter Generated By</div>
+          <div class="byline-name" style="font-size:11px;">Vikram Sankhala</div>
+          <div class="byline-role">Data Analysis &amp; Report Design · April 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="byline-card">
+      <div style="flex:1;">
+        <div class="byline-label">Report Source</div>
+        <div class="byline-name">MPCB Environment Department</div>
+        <div class="byline-role">Maharashtra Pollution Control Board<br>Multi-District Ganeshotsav Water Quality Monitoring 2024–2025<br>ISO 9001:2015 Certified</div>
+        <div style="margin-top:6px;">
+          <div class="byline-label">Districts Covered</div>
+          <div class="byline-role">Akola · Ahilyanagar · Amravati · Nagpur · Gondia · Bhandara</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD -->
+  <div class="report-tag-row">Water Quality Report &nbsp;·&nbsp; Multi-District Ganeshotsav Analysis &nbsp;·&nbsp; 2024–2025 Monitoring Datasets</div>
+
+  <div class="lead-section">
+    <div>
+      <div class="lead-headline">
+        Ganesh Idol Immersion Triggers <em>Critical</em> Aquatic Collapse Across Maharashtra
+      </div>
+      <div class="exceeds-pill">● Multiple Districts Exceed Permissible Limits</div>
+      <p class="lead-body">
+        Multi-year monitoring data from the Maharashtra Pollution Control Board (MPCB) across six districts reveals that the annual Ganeshotsav visarjan ritual drives severe, predictable deterioration of rivers, lakes, and wells. Dissolved oxygen in the Purna River, Akola, plummeted to <strong>1.60 mg/L</strong> — below the lethal threshold for most fish — while BOD nearly doubled. Lead contamination at Amardham Well, Ahilyanagar, reached <strong>0.07 mg/L</strong>, seven times the BIS drinking water limit. Plaster of Paris (PoP) idols, synthetic toxic paints, and mass immersion of nirmalya (floral offerings) are the primary drivers. Residual contamination persists in riverbeds and groundwater long after celebrations conclude.
+      </p>
+    </div>
+    <div class="festival-illustration">
+      <svg viewBox="0 0 240 170" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="120" cy="130" rx="100" ry="28" fill="#8ebdd4" opacity="0.45"/>
+        <ellipse cx="120" cy="126" rx="100" ry="22" fill="#6aa8c8" opacity="0.5"/>
+        <ellipse cx="120" cy="124" rx="50" ry="10" fill="none" stroke="#c0392b" stroke-width="1" opacity="0.5"/>
+        <ellipse cx="120" cy="124" rx="72" ry="14" fill="none" stroke="#c0392b" stroke-width="0.7" opacity="0.35"/>
+        <ellipse cx="120" cy="90" rx="22" ry="28" fill="#c8b89a"/>
+        <circle cx="120" cy="65" r="14" fill="#c8b89a"/>
+        <path d="M112 72 Q102 85 108 92" stroke="#a09070" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <rect x="110" y="51" width="20" height="6" rx="2" fill="#d4a84b"/>
+        <polygon points="115,51 120,44 125,51" fill="#d4a84b"/>
+        <circle cx="82" cy="118" r="3" fill="#c0392b" opacity="0.55"/>
+        <circle cx="96" cy="112" r="2" fill="#c0392b" opacity="0.45"/>
+        <circle cx="148" cy="114" r="2.5" fill="#c0392b" opacity="0.5"/>
+        <circle cx="160" cy="120" r="2" fill="#e07b39" opacity="0.5"/>
+        <polygon points="192,86 204,106 180,106" fill="#fde8e6" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="192" y="102" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="bold">!</text>
+        <text x="192" y="116" text-anchor="middle" font-family="monospace" font-size="5.5" fill="#c0392b" letter-spacing="0.5">CONTAMINATED</text>
+        <rect x="36" y="100" width="5" height="20" fill="#7a6a52"/>
+        <ellipse cx="38.5" cy="97" rx="10" ry="12" fill="#4a7a52"/>
+        <rect x="192" y="100" width="5" height="20" fill="#7a6a52"/>
+        <ellipse cx="194.5" cy="97" rx="10" ry="12" fill="#4a7a52"/>
+        <circle cx="200" cy="28" r="10" fill="#f4c542" opacity="0.7"/>
+        <text x="55" y="136" font-family="monospace" font-size="7" fill="#c0392b" opacity="0.7">Pb</text>
+        <text x="69" y="128" font-family="monospace" font-size="7" fill="#c0392b" opacity="0.6">SO4</text>
+        <text x="140" y="133" font-family="monospace" font-size="7" fill="#c0392b" opacity="0.65">PoP</text>
+        <text x="120" y="157" text-anchor="middle" font-family="monospace" font-size="6" fill="#c0392b" letter-spacing="1" font-weight="bold">HIGH POLLUTION LOAD</text>
+      </svg>
+      <div class="contam-tag">⚠ Multi-District Contamination</div>
+    </div>
+  </div>
+
+  <!-- PARAM CARDS -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Parameter Analysis — Peak Crisis Readings Across Sites</div><hr/></div></div>
+
+  <div class="param-grid">
+    <div class="param-card critical">
+      <div class="param-label">Dissolved O₂ — Purna River, Akola (2025 Peak)</div>
+      <div class="param-value critical">1.60<span class="param-unit">mg/L</span></div>
+      <div class="param-limit">Limit: 4.0–7.0 mg/L &nbsp;·&nbsp; Fish minimum: 4.0 mg/L</div>
+      <div class="param-status critical">✕ Lethal — 2.5× Below Fish Min.</div>
+    </div>
+    <div class="param-card critical">
+      <div class="param-label">Lead (Pb) — Amardham Well, Ahilyanagar (Post-Festival 2024)</div>
+      <div class="param-value critical">0.07<span class="param-unit">mg/L</span></div>
+      <div class="param-limit">BIS Drinking Water Limit: 0.01 mg/L</div>
+      <div class="param-status critical">✕ Critical — 7× Over BIS Limit</div>
+    </div>
+    <div class="param-card warning">
+      <div class="param-label">Water Hardness — Amardham Well (Post-Festival 2024)</div>
+      <div class="param-value warning">1380<span class="param-unit">mg/L</span></div>
+      <div class="param-limit">Pre-festival: 540 mg/L &nbsp;·&nbsp; BIS Limit: 600 mg/L</div>
+      <div class="param-status warning">⚑ 2.3× BIS Limit</div>
+    </div>
+    <div class="param-card warning">
+      <div class="param-label">BOD — Pedhi River, Amravati (Post-Festival 2024)</div>
+      <div class="param-value warning">34<span class="param-unit">mg/L</span></div>
+      <div class="param-limit">Pre-festival: 12 mg/L &nbsp;·&nbsp; Limit: &lt;30 mg/L</div>
+      <div class="param-status warning">⚑ Nearly 3× Pre-Festival Level</div>
+    </div>
+    <div class="param-card critical">
+      <div class="param-label">Dissolved O₂ — Naik Lake, Nagpur (2025, 3rd Day)</div>
+      <div class="param-value critical">2.20<span class="param-unit">mg/L</span></div>
+      <div class="param-limit">Pre-immersion: 5.2 mg/L &nbsp;·&nbsp; Limit: 4.0–7.0 mg/L</div>
+      <div class="param-status critical">✕ Critical — Below Minimum</div>
+    </div>
+    <div class="param-card monitor">
+      <div class="param-label">Turbidity — Pindkepar Nalla, Gondia (Festival Peak 2024)</div>
+      <div class="param-value monitor">32.0<span class="param-unit">NTU</span></div>
+      <div class="param-limit">Pre-festival: 5.60 NTU</div>
+      <div class="param-status monitor">⚑ 5.7× Pre-Festival Spike</div>
+    </div>
+  </div>
+
+  <!-- BAR CHART -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">How Far Over the Limit? — Peak Readings vs. Safe Thresholds</div><hr/></div></div>
+
+  <div class="chart-section">
+    <div class="chart-row">
+      <div class="chart-label">Dissolved O₂<br><span style="font-size:6px">(Purna R. Crisis)</span></div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar critical" style="width:20%"></div>
+        <div class="chart-limit-line" style="left:50%"></div>
+      </div>
+      <div class="chart-value">1.60 mg/L<br><span style="font-size:6px;color:var(--red)">LETHAL LEVEL</span></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label">Lead (Pb)<br><span style="font-size:6px">(Amardham Well)</span></div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar critical" style="width:100%"></div>
+        <div class="chart-limit-line" style="left:14.3%"></div>
+      </div>
+      <div class="chart-value">0.07 mg/L<br><span style="font-size:6px;color:var(--red)">7× BIS LIMIT</span></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label">Water Hardness<br><span style="font-size:6px">(Amardham Well)</span></div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar warning" style="width:82%"></div>
+        <div class="chart-limit-line" style="left:35%"></div>
+      </div>
+      <div class="chart-value">1380 mg/L<br><span style="font-size:6px;color:var(--orange)">2.3× LIMIT</span></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label">BOD<br><span style="font-size:6px">(Pedhi R., Post-Fest)</span></div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar warning" style="width:75%"></div>
+        <div class="chart-limit-line" style="left:65%"></div>
+      </div>
+      <div class="chart-value">34 mg/L<br><span style="font-size:6px;color:var(--orange)">↑ 3× PRE-FEST</span></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label">BOD<br><span style="font-size:6px">(Purna R., Peak 2025)</span></div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar warning" style="width:60%"></div>
+        <div class="chart-limit-line" style="left:32%"></div>
+      </div>
+      <div class="chart-value">25.60 mg/L<br><span style="font-size:6px;color:var(--orange)">1.9× PRE-FEST</span></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label">Turbidity<br><span style="font-size:6px">(Pindkepar Nalla)</span></div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar monitor" style="width:55%"></div>
+        <div class="chart-limit-line" style="left:9%"></div>
+      </div>
+      <div class="chart-value">32.0 NTU<br><span style="font-size:6px;color:var(--amber)">5.7× PRE-FEST</span></div>
+    </div>
+    <div class="chart-note">◆ Vertical Line = Permissible / Baseline Limit &nbsp;|&nbsp; Bar = Measured Peak Value</div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-block">
+    <div class="quote-text">"Our community deserves clean, safe water. The data from Maharashtra's rivers and wells during Ganeshotsav is alarming — and the Rotary Club will not stay silent while our state's aquatic ecosystems are pushed to the brink year after year."</div>
+    <div class="quote-attr">— Rekha Sankhala, President · Rotary Club of Navi Mumbai Nerul (RCNN) · Joy of Giving</div>
+  </div>
+
+  <!-- FULL TABLE -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Complete Results at a Glance — Multi-Site Summary</div><hr/></div></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Site &amp; District</th>
+          <th>Parameter</th>
+          <th>Pre-Festival</th>
+          <th>Peak / Post Value</th>
+          <th>Permissible Limit</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Purna River, Akola</strong></td><td>Dissolved Oxygen</td><td>4.80 mg/L</td><td><strong>1.60 mg/L</strong> (peak)</td><td>4.0–7.0 mg/L</td><td><span class="badge critical">✕ Critical</span></td></tr>
+        <tr><td>Purna River, Akola</td><td>BOD</td><td>13.70 mg/L</td><td><strong>25.60 mg/L</strong> (peak)</td><td>&lt;30 mg/L</td><td><span class="badge elevated">⚑ High Spike</span></td></tr>
+        <tr><td>Purna River, Akola</td><td>COD</td><td>48.00 mg/L</td><td><strong>68.00 mg/L</strong> (peak)</td><td>—</td><td><span class="badge monitor">⚑ Monitor</span></td></tr>
+        <tr><td><strong>Morna River, Akola</strong></td><td>Lead (Pb)</td><td>0.06 mg/L</td><td>Not Detected (post-fest)</td><td>0.01 mg/L</td><td><span class="badge elevated">⚑ High Pre-Fest</span></td></tr>
+        <tr><td><strong>Amardham Well, Ahilyanagar</strong></td><td>Lead (Pb)</td><td>BDL</td><td><strong>0.07 mg/L</strong> (post)</td><td>0.01 mg/L (BIS)</td><td><span class="badge critical">✕ 7× BIS Limit</span></td></tr>
+        <tr><td>Amardham Well, Ahilyanagar</td><td>Water Hardness</td><td>540 mg/L</td><td><strong>1380 mg/L</strong> (post)</td><td>600 mg/L (BIS)</td><td><span class="badge critical">✕ 2.3× Limit</span></td></tr>
+        <tr><td>Amardham Well, Ahilyanagar</td><td>pH</td><td>7.7</td><td>7.6 (post)</td><td>6.5–8.5</td><td><span class="badge pass">✓ Pass</span></td></tr>
+        <tr><td><strong>Pedhi River, Amravati</strong></td><td>BOD</td><td>12 mg/L</td><td><strong>34 mg/L</strong> (post)</td><td>&lt;30 mg/L</td><td><span class="badge elevated">⚑ Exceeds</span></td></tr>
+        <tr><td>Pedhi River, Amravati</td><td>Conductivity</td><td>777 µmho/cm</td><td><strong>1046 µmho/cm</strong></td><td>—</td><td><span class="badge monitor">⚑ Monitor</span></td></tr>
+        <tr><td><strong>Chhatri Lake, Amravati</strong></td><td>Dissolved Oxygen</td><td>6.2 mg/L</td><td><strong>3.8 mg/L</strong> (peak)</td><td>4.0–7.0 mg/L</td><td><span class="badge critical">✕ Below Min.</span></td></tr>
+        <tr><td>Chhatri Lake, Amravati</td><td>BOD</td><td>11.2 mg/L</td><td><strong>22.8 mg/L</strong> (peak)</td><td>&lt;30 mg/L</td><td><span class="badge elevated">⚑ 2× Spike</span></td></tr>
+        <tr><td><strong>Naik Lake, Nagpur</strong></td><td>Dissolved Oxygen</td><td>5.2 mg/L</td><td><strong>2.2 mg/L</strong> (3rd day)</td><td>4.0–7.0 mg/L</td><td><span class="badge critical">✕ Critical</span></td></tr>
+        <tr><td>Naik Lake, Nagpur</td><td>BOD</td><td>9.9 mg/L</td><td><strong>20.9 mg/L</strong> (peak)</td><td>&lt;30 mg/L</td><td><span class="badge elevated">⚑ 2.1× Spike</span></td></tr>
+        <tr><td>Naik Lake, Nagpur</td><td>Fecal Coliform</td><td>920 MPN/100 mL</td><td>920+ MPN/100 mL</td><td>&lt;500 MPN/100 mL</td><td><span class="badge critical">✕ High</span></td></tr>
+        <tr><td><strong>Pindkepar Nalla, Gondia</strong></td><td>Turbidity</td><td>5.60 NTU</td><td><strong>32.0 NTU</strong> (3rd day)</td><td>—</td><td><span class="badge monitor">⚑ Very High</span></td></tr>
+        <tr><td>Pindkepar Nalla, Gondia</td><td>BOD</td><td>3.20 mg/L</td><td><strong>6.40 mg/L</strong></td><td>&lt;30 mg/L</td><td><span class="badge borderline">↑ Doubled</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EXPLAINERS -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">What Does This Mean?</div><hr/></div></div>
+
+  <div class="explainer-grid">
+    <div class="explainer-card dark">
+      <div class="explainer-icon">🧪</div>
+      <div class="explainer-title">Why Does DO Crash to Lethal Levels?</div>
+      <div class="explainer-body">Aerobic bacteria decompose the massive influx of organic matter — flowers, food, cloth from nirmalya — by consuming dissolved oxygen. When the decomposition rate exceeds the river's re-aeration capacity, DO crashes. At 1.60 mg/L in the Purna River, most fish species cannot survive (minimum: 4.0 mg/L). Oil-based paint flakes also form a surface film that blocks atmospheric oxygen from dissolving back into the water, compounding the depletion and creating hypoxic dead zones.</div>
+    </div>
+    <div class="explainer-card">
+      <div class="explainer-icon">🏺</div>
+      <div class="explainer-title">What Makes Plaster of Paris (PoP) So Harmful?</div>
+      <div class="explainer-body">Unlike traditional clay idols that dissolve naturally, PoP (calcium sulphate hemihydrate) hardens on contact with water. It breaks into insoluble fragments that create sludge, reducing river depth through siltation. Its fine dust seals the porous riverbed, killing micro-benthic organisms and hindering aquifer recharge. PoP slowly leaches gypsum and sulphur, raising water hardness and TDS — as seen at the Amardham Well where hardness more than doubled post-festival to 1,380 mg/L.</div>
+    </div>
+    <div class="explainer-card">
+      <div class="explainer-icon">⚗️</div>
+      <div class="explainer-title">How Do Lead and Heavy Metals Reach Drinking Water?</div>
+      <div class="explainer-body">Modern idols are coated in oil-based paints containing lead (red/orange pigments), mercury (bright reds), chromium, cadmium, and zinc. Upon immersion, paint flakes settle into sediment, becoming invisible in surface tests but detectable in nearby wells. At Amardham Well, Ahilyanagar, lead jumped from below detection to 0.07 mg/L post-festival — seven times the BIS drinking water standard — confirming direct groundwater migration. Lead is a neurotoxin; mercury bioaccumulates up the food chain.</div>
+    </div>
+    <div class="explainer-card">
+      <div class="explainer-icon">🌱</div>
+      <div class="explainer-title">What Is the Long-Term Ecosystem Consequence?</div>
+      <div class="explainer-body">Heavy metals do not degrade — they bioaccumulate. Phytoplankton absorb them, fish eat the phytoplankton, humans eat the fish. Lead reduces the nutritional value of fish like mullet (Liza parsia). PoP fragments choke land-water interfaces, clog fish and crab burrows, and in coastal zones damage mangrove roots — critical marine nurseries. In closed systems like Naik Lake (Nagpur), absent of river flushing, contamination compounds with each festival cycle into a worsening toxic reservoir.</div>
+    </div>
+  </div>
+
+  <!-- PATHWAY -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Where Does the Contamination Come From?</div><hr/></div></div>
+
+  <div class="pathway-section">
+    <div class="pathway-diagram">
+      <div class="pathway-inner">
+        <div class="pathway-col">
+          <div class="pbox">Plaster of Paris Idols<small>→ SO₄²⁻ · TDS · Siltation</small></div>
+          <div class="pbox">Synthetic Oil Paints<small>→ Pb · Hg · Cr · Cd · Zn</small></div>
+          <div class="pbox">Nirmalya / Offerings<small>→ BOD · Nutrients · FC</small></div>
+          <div class="pbox">Mass Public Gatherings<small>→ Fecal Coliform Surge</small></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">Sources →</div>
+          <div class="pathway-center">
+            <div class="pathway-center-label">Rivers<br>Lakes &amp;<br>Wells<br>Maharashtra<br>⚠ Polluted</div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">→ Impacts</div>
+        </div>
+        <div class="pathway-col">
+          <div class="pibox">Fish Kills &amp;<br>Aquatic Ecosystem Death</div>
+          <div class="pibox">Groundwater Lead<br>Contamination</div>
+          <div class="pibox">Eutrophication<br>&amp; Algal Blooms</div>
+          <div class="pibox">Waterborne Disease Risk<br>(Typhoid · Hepatitis A)</div>
+        </div>
+      </div>
+      <div class="pathway-caption">Contamination Pathways During Ganeshotsav Visarjan · Maharashtra Districts · 2024–2025</div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Recommended Actions</div><hr/></div></div>
+
+  <div class="actions-section">
+    <div class="action-row">
+      <div class="action-number">1</div>
+      <div class="action-content">
+        <div class="action-title">Enforce Mandatory Shift to Natural Clay Idols — Before 2026 Season</div>
+        <div class="action-body">The CPCB and MPCB must enforce the 2020 ban on Plaster of Paris and synthetic toxic paints with real consequences. The state government should provide financial subsidies to traditional artisans using Shadu (natural clay), making eco-friendly idols price-competitive with mass-produced PoP alternatives. Consumer certification labelling for lead-free, natural-dye idols should be mandated before the 2026 festival season.</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <div class="action-number">2</div>
+      <div class="action-content">
+        <div class="action-title">Universal Lined Artificial Immersion Tanks in Every Municipal Ward</div>
+        <div class="action-body">Every municipal ward across Maharashtra must provide sealed, lined artificial tanks for immersion, constructed to prevent leaching into groundwater. The Bombay High Court's July 2025 interim directive — requiring household idols to use artificial ponds — must be strictly enforced with fines for violations. Tanks should be equipped with the CSIR-NCL ammonium bicarbonate chemical recycling system, which fully disintegrates PoP within 72 hours while producing ammonium sulphate fertiliser as a usable by-product.</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <div class="action-number">3</div>
+      <div class="action-content">
+        <div class="action-title">Deploy Real-Time DO and Conductivity Sensors at All Major Ghats</div>
+        <div class="action-body">The MPCB should install mobile real-time dissolved oxygen sensors at all major immersion sites before the festival begins. A DO reading dropping below 3.0 mg/L should trigger immediate localized aeration response. This is especially urgent for closed lake ecosystems like Naik Lake (Nagpur) and Chhatri Lake (Amravati), which lack the flushing capacity of rivers and show the most acute oxygen depletion.</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <div class="action-number">4</div>
+      <div class="action-content">
+        <div class="action-title">Mandate Nirmalya Segregation Before Immersion at All Pandals</div>
+        <div class="action-body">Devotees must separate all floral offerings, food, cloth, and accessories from the idol before immersion. Public pandals should partner with waste management organisations to convert flowers into organic compost or incense sticks. This single step would dramatically reduce the BOD spike observed across all monitored sites, which is primarily driven by organic waste rather than idol material alone.</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <div class="action-number">5</div>
+      <div class="action-content">
+        <div class="action-title">Post-Festival Sediment Dredging and Mandatory Well-Water Testing</div>
+        <div class="action-body">Post-festival dredging of known immersion zones is essential to remove accumulated lead, mercury, and PoP fragments. Well water in Ahilyanagar — where lead reached 7× the BIS limit — must be tested within 15 days of the festival each year with results made public. If contamination exceeds BIS limits, alternative drinking water must be provided by civic bodies immediately. Confirmed illegal industrial discharge into immersion zones should be escalated to the Maharashtra Pollution Control Board for action under the Water (Prevention &amp; Control of Pollution) Act, 1974.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="section-divider"><div class="divider-line"><hr/><div class="divider-label">Summary of Environmental Shifts — Ganeshotsav Immersion Impact</div><hr/></div></div>
+
+  <div class="table-wrap" style="padding-bottom:16px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Observed Trend During Immersion</th>
+          <th>Long-Term Consequence</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Dissolved Oxygen</strong></td><td>Sharp drop to 1.60 mg/L (Purna River 2025)</td><td>Fish mortality, anaerobic conditions, ecosystem collapse</td><td><span class="badge critical">Critical</span></td></tr>
+        <tr><td><strong>BOD / COD</strong></td><td>2–3× baseline spike at all monitored sites</td><td>Rapid eutrophication, nutrient imbalance, prolonged die-off</td><td><span class="badge elevated">High</span></td></tr>
+        <tr><td><strong>Heavy Metals (Pb, Hg, Cr)</strong></td><td>Lead detected in groundwater post-festival</td><td>Bioaccumulation in food chain; neurotoxicity; well poisoning</td><td><span class="badge critical">Critical</span></td></tr>
+        <tr><td><strong>Turbidity</strong></td><td>Up to 32 NTU (5.7× baseline) in nallas</td><td>Blocked photosynthesis, habitat loss, sediment smothering</td><td><span class="badge elevated">High</span></td></tr>
+        <tr><td><strong>Water Hardness</strong></td><td>540 → 1380 mg/L (2.5× increase) post-festival</td><td>Groundwater contamination, pipe scaling, laxative effects</td><td><span class="badge elevated">High</span></td></tr>
+        <tr><td><strong>Fecal Coliform</strong></td><td>920+ MPN/100 mL at urban lake sites</td><td>Waterborne disease risk — typhoid, dysentery, hepatitis A</td><td><span class="badge critical">Critical</span></td></tr>
+        <tr><td><strong>pH</strong></td><td>Generally stable across most sites</td><td>No significant acid/base disruption at present</td><td><span class="badge pass">Stable</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div style="color:#555;font-size:6.5px;margin-bottom:2px;">Monitoring Period</div>
+      Sep 2024 – Sep 2025<br>
+      Analysis: April 2026<br>
+      Source: MPCB Env. Dept.
+    </div>
+    <div style="text-align:center;">
+      <div class="footer-logo">Water Watch</div>
+      <div style="margin-top:3px;">RCNN · Joy of Giving · Navi Mumbai</div>
+      <div style="margin-top:2px;color:#555;">Issue No. 002 &nbsp;·&nbsp; 16 April 2026</div>
+    </div>
+    <div style="text-align:right;">
+      Published By: Rekha Sankhala<br>
+      President, RCNN<br>
+      Report By: Vikram Sankhala
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
